@@ -1,0 +1,51 @@
+{
+    "eventos": [{
+            "nombre": "Recolección y reforestación de arboles!",
+            "descripcion": "¿Te gustaría ayudar a mejorar la situación del planeta? El día 04/11 nos reunimos para seguir recuperando y dando vida a este hermoso espacio que tenemos para compartir! ¿Qué necesitas traer? Guantes, bolsas de consorcio, ropa cómoda, agua y mucha buena onda!!",
+            "fechaInicio": "2020-02-04T13:30:33.001-03:00",
+            "fechaFin": "2020-02-10T17:24:33.002-03:00",
+            "ubicacion": "Recta martinolli 7700, Ciudad de Cordoba",
+            "foto": "https://firebasestorage.googleapis.com/v0/b/plogger-437eb.appspot.com/o/pictures%2Freforestacion.png?alt=media&token=9448c9df-5b53-4baa-9302-7b910e9155b8"
+        },
+        {
+            "nombre": "Ploggin en Córdoba",
+            "descripcion": "Los participantes partirán desde el Kempes a las 11.30 hs, y desde allí recorrerán 10 km recogiendo a su paso los residuos diseminados.¿Estás  listo",
+            "fechaInicio": "2020-02-11T17:30:01.892-03:00",
+            "fechaFin": "2020-02-12T17:30:01.893-03:00",
+            "ubicacion": "La Tablada 350, Ciudad de Cordoba",
+            "foto": "https://firebasestorage.googleapis.com/v0/b/plogger-437eb.appspot.com/o/pictures%2Frunning.png?alt=media&token=d134e41d-aefa-481a-9fa9-0c761af98e65"
+        },
+        {
+            "nombre": "Limpieza en parque del Kempes",
+            "descripcion": "Nos reunimos en el parque del Kempes a juntar todos los residuos, para que entre todos podamos construir un futuro mejor.",
+            "fechaInicio": "2020-04-06T16:00:16.029-03:00",
+            "fechaFin": "2020-02-12T17:00:16.030-03:00",
+            "ubicacion": "Parque del kempes, Ciudad de Cordoba",
+            "foto": "https://firebasestorage.googleapis.com/v0/b/plogger-437eb.appspot.com/o/pictures%2Fkempes.jpg?alt=media&token=b32f349c-5857-4919-a720-f92dfd1cc2cb"
+        },
+        {
+            "nombre": "Jornada de limpieza en la Reserva San Martín",
+            "descripcion": "Nos juntamos en la reserva San Martín. Asistir con: bolsa de consorcio, guantes, abrigo y agua.",
+            "fechaInicio": "2020-02-15T17:30:34.992-03:00",
+            "fechaFin": "2020-02-15T19:40:34.993-03:00",
+            "ubicacion": "Ciudad de Cordoba",
+            "foto": "https://firebasestorage.googleapis.com/v0/b/plogger-437eb.appspot.com/o/pictures%2FWhatsApp%20Image%202019-11-04%20at%2020.34.03.jpeg?alt=media&token=db1b42e6-a63c-4440-8d68-5561496db059"
+        },
+        {
+            "nombre": "Ploggeate",
+            "descripcion": "Estaremos corriendo y limpiando las calles de Córdoba, recibirás guantes, bolsas, agua y fruta. Llevá crema o protector solar, gorra y lentes de sol.",
+            "fechaInicio": "2020-02-17T15:30:05.234-03:00",
+            "fechaFin": "2020-02-17T19:28:21.904-03:00",
+            "ubicacion": "Córdoba",
+            "foto": ""
+        },
+        {
+            "nombre": "A concientizarse! Disminuyamos el uso de electricidad",
+            "descripcion": "El 20 de febrero nos comprometamos a no utilizar energia electrica por 5 horas.\n\nEntre todos podemos!!!",
+            "fechaInicio": "2020-02-15T20:24:42.600-03:00",
+            "fechaFin": "2020-02-22T20:24:42.602-03:00",
+            "ubicacion": "Ciudad de Cordoba",
+            "foto": "https://firebasestorage.googleapis.com/v0/b/plogger-437eb.appspot.com/o/pictures%2Fhagamos-uso-racional-de-la-energia-electrica-2-1200x565.jpg?alt=media&token=1fa9ad35-67d4-4e44-bd53-95a05764c693"
+        }
+    ]
+}
