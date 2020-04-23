@@ -12,8 +12,9 @@ export class EventosPage {
   eventos: IEventoLista[]
 
   constructor( private eventoService: EventoService ) {
-    this.eventoService.getEventos().subscribe((response: any) => {
-      this.eventos = response.eventos;
+    this.eventoService.getEventos().subscribe(response => {
+      this.eventos = response;
     })
   }
 }
+
