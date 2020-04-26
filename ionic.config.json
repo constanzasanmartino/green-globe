@@ -1,5 +1,7 @@
 {
   "name": "GreenGlobe",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
