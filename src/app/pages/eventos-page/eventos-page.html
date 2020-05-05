@@ -7,6 +7,20 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+    <ion-list>
+        <ion-list-header>
+          <ion-label>
+            Filtros
+          </ion-label>
+        </ion-list-header>
+    <ion-item>
+        <ion-label>Tipo de Evento</ion-label>
+        <ion-select [(ngModel)]="selectedValues" multiple="true" >
+          <ion-select-option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.descripcion}}</ion-select-option>
+          
+        </ion-select>
+      </ion-item>
+    </ion-list>
     <div *ngFor="let evento of eventos">
         <app-evento-card [evento]="evento"></app-evento-card>
     </div>
