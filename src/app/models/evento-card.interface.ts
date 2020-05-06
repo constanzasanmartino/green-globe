@@ -5,5 +5,5 @@ export interface IEventoLista {
     fechaFin: string,
     ubicacion: string,
     foto: string,
-    tipo:BigInteger
+    tipo:number
 } 

@@ -1,4 +1,4 @@
 export interface ITipoEventoLista {
-    id: BigInteger,
+    id: number,
     descripcion: string 
 } 

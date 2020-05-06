@@ -9,7 +9,7 @@ import { IEventoLista } from '../../models/evento-card.interface';
 export class EventoCardComponent implements OnInit {
 
   @Input() evento: IEventoLista;
-
+tipos:String[]=['Recoleccion de basura','Reduccion de recursos','Reforestacion','Running','Reciclaje'];
   constructor() { }
 
   ngOnInit() {

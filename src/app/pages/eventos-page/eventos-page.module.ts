@@ -7,6 +7,7 @@ import { EventosPage } from './eventos-page';
 import { EventoCardComponent } from '../../components/evento-card/evento-card.component';
 import { ComponentsModule } from '../../components/components.module';
 
+
 @NgModule({
   imports: [
     IonicModule,
