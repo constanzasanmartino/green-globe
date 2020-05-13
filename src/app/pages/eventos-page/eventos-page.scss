@@ -11,3 +11,16 @@ ion-toolbar {
 ion-progress-bar {
     background-color: #379b80;
 }
+
+::ng-deep .alert-wrapper.sc-ion-alert-md {
+    width: -webkit-fill-available;
+}
+
+::ng-deep .alert-button.sc-ion-alert-md {
+    color: #379b80;
+}
+
+::ng-deep [aria-checked=true].sc-ion-alert-md .alert-checkbox-icon.sc-ion-alert-md {
+    border-color: #379b80;
+    background-color: #379b80;
+}
