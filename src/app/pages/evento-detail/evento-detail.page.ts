@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { IEvento } from '../../models/evento.interface';
 import { ITipoEvento } from '../../models/tipo-evento.interface';
+import { EventoService } from '../../services/evento.service';
 
 @Component({
   selector: 'app-event',
@@ -43,7 +44,7 @@ export class EventoDetailPage implements OnInit {
     }];
   evento: IEvento;
 
-  constructor( private route: Router ) { 
+  constructor( private route: Router,private eventoService: EventoService ) { 
     let evento = this.route.getCurrentNavigation().extras.state;
     this.evento = {
       id: evento.id,
@@ -58,6 +59,7 @@ export class EventoDetailPage implements OnInit {
       linkContacto: evento.linkContacto,
       celularContacto: evento.celularContacto
     }
+    console.log(eventoService.getImagenes(evento.id));
   }
 
   ngOnInit() {}

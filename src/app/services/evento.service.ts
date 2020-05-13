@@ -18,7 +18,7 @@ export class EventoService {
   private eventosCollection: AngularFirestoreCollection<IEvento>;
   private tipoEventos: Observable<ITipoEvento[]>;
   private eventos: Observable<IEvento[]>;
-
+  private imagenesEvento: any[];
   constructor( private db: AngularFirestore ) { }
 
   getEventos() {
@@ -47,5 +47,18 @@ export class EventoService {
       })
     );
     return this.tipoEventos;
+  }
+  getImagenes(id:String) {
+     this.db.collection('eventos/'+id +'/imagenes').snapshotChanges().subscribe((imagenes) => {
+      this.imagenesEvento = [];
+      imagenes.forEach((imagen: any) => {
+        this.imagenesEvento.push({
+          id: imagen.payload.doc.id,
+          data: imagen.payload.doc.data()
+        });
+      })
+    });
+
+    return this.imagenesEvento;
   }
 }
