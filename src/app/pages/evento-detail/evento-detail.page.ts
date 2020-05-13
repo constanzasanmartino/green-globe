@@ -58,8 +58,6 @@ export class EventoDetailPage implements OnInit {
       linkContacto: evento.linkContacto,
       celularContacto: evento.celularContacto
     }
-
-    console.log(this.evento)
   }
 
   ngOnInit() {}
