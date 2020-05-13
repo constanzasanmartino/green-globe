@@ -9,18 +9,20 @@
 <ion-content [fullscreen]="true">
     <ion-list>
         <ion-list-header>
-          <ion-label>
-            Filtros
-          </ion-label>
+            <ion-label>
+                Filtros
+            </ion-label>
         </ion-list-header>
-    <ion-item >
-        <ion-label>Seleccione el tipo de evento</ion-label>
-        <ion-select  [(ngModel)]="selectedValues" multiple="true" (ionChange)="OnChange($event)"  interface="alert">
-          <ion-select-option  *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.descripcion}}</ion-select-option>
-          
-        </ion-select>
-      </ion-item>
+        <ion-item>
+            <ion-label>Seleccione el tipo de evento</ion-label>
+            <ion-select [(ngModel)]="selectedValues" multiple="true" (ionChange)="OnChange($event)" interface="alert">
+                <ion-select-option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.descripcion}}</ion-select-option>
+            </ion-select>
+        </ion-item>
     </ion-list>
+
+    <ion-progress-bar *ngIf="loading" color="light" type="indeterminate"></ion-progress-bar>
+
     <div *ngFor="let evento of eventos">
         <app-evento-card [evento]="evento"></app-evento-card>
     </div>

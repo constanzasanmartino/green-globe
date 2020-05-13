@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IEventoLista } from '../../models/evento-card.interface';
+import { Router } from '@angular/router';
+
+import { IEvento } from '../../models/evento.interface';
+import { ITipoEvento } from '../../models/tipo-evento.interface';
 
 @Component({
   selector: 'app-evento-card',
@@ -8,11 +11,48 @@ import { IEventoLista } from '../../models/evento-card.interface';
 })
 export class EventoCardComponent implements OnInit {
 
-  @Input() evento: IEventoLista;
-tipos:String[]=['Recoleccion de basura','Reduccion de recursos','Reforestacion','Running','Reciclaje'];
-  constructor() { }
+  tipos: ITipoEvento[] = [
+    {
+      id: 1,
+      descripcion: 'Recoleccion de basura',
+      color: 'warning',
+      icono: 'trash' 
+    },
+    {
+      id: 2,
+      descripcion: 'Reduccion de recursos',
+      color: 'danger',
+      icono: 'flashlight' 
+    },
+    {
+      id: 3,
+      descripcion: 'Reforestacion',
+      color: 'success',
+      icono: 'pulse' 
+    },
+    {
+      id: 4,
+      descripcion: 'Running',
+      color: 'primary',
+      icono: 'walk' 
+    },
+    {
+      id: 5,
+      descripcion: 'Reciclaje',
+      color: 'tertiary',
+      icono: 'sync' 
+    }];
+
+  @Input() evento: IEvento;
+
+  constructor( private router: Router ) {}
 
   ngOnInit() {
+  }
+
+  goToEvent() {
+    let eid = this.evento.id;
+    this.router.navigate([`/evento/${eid}`], { state: this.evento } ).then();
   }
 
 }

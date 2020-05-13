@@ -1,20 +1,28 @@
 import { Injectable } from '@angular/core';
-import { IEventoLista } from '../models/evento-card.interface'
 //import { HttpClient } from '@angular/common/http'
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore'
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore'
+
+import { IEvento } from '../models/evento.interface'
+import { ITipoEvento } from '../models/tipo-evento.interface';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class EventoService {
 
-  private eventosCollection: AngularFirestoreCollection<IEventoLista>;
-  private eventos: Observable<IEventoLista[]>;
+  private tipoEventosCollection: AngularFirestoreCollection<ITipoEvento>;
+  private eventosCollection: AngularFirestoreCollection<IEvento>;
+  private tipoEventos: Observable<ITipoEvento[]>;
+  private eventos: Observable<IEvento[]>;
 
-  constructor(db: AngularFirestore) {
+  constructor( private db: AngularFirestore ) { }
 
-    this.eventosCollection = db.collection<IEventoLista>('eventos');
+  getEventos() {
+    this.eventosCollection = this.db.collection<IEvento>('eventos', ref => ref.orderBy('fechaInicio', 'asc'));
     this.eventos = this.eventosCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -24,10 +32,20 @@ export class EventoService {
         });
       })
     );
-
+    return this.eventos;
   }
 
-  getEventos() {
-    return this.eventos;
+  getTiposEvento() {
+    this.tipoEventosCollection = this.db.collection<ITipoEvento>('tipoDeEvento');
+    this.tipoEventos = this.tipoEventosCollection.snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+    return this.tipoEventos;
   }
 }

@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar color="greenglobe">
+        <ion-title>Evento</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-evento">
+    <ion-img *ngIf="evento.foto" [src]="evento.foto"></ion-img>
+    <ion-card mode="ios" class="evento">
+        <ion-card-header>
+            <ion-card-subtitle>{{evento.fechaInicio | date: 'dd/MM/yyyy HH:mm'}}</ion-card-subtitle>
+            <ion-card-title>{{ evento.nombre }}</ion-card-title>
+            <ion-card-subtitle>{{ evento.ubicacion }}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+            <ion-card-subtitle> <b class="b-size">Descripción</b> </ion-card-subtitle>
+            {{ evento.descripcion }}
+            <br>
+            <ion-chip color="{{tipos[evento.tipo -1].color}}">
+                <ion-label color="{{tipos[evento.tipo -1].color}}">
+                    <ion-icon name="{{tipos[evento.tipo -1].icono}}"></ion-icon>
+                    {{ tipos[evento.tipo -1].descripcion}}
+                </ion-label>
+            </ion-chip>
+            <br>
+            <br>
+            <ion-card-subtitle> <b class="b-size">Contacto</b> </ion-card-subtitle>
+            <div *ngIf="evento.linkContacto || evento.celularContacto ">
+                <a *ngIf="evento.linkContacto" href="{{evento.linkContacto}}">{{ evento.linkContacto }}</a>
+                <div>
+                    {{ evento.celularContacto }}
+                </div>
+            </div>
+        </ion-card-content>
+
+    </ion-card>
+
+</ion-content>
