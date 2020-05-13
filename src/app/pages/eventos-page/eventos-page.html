@@ -10,7 +10,7 @@
     <ion-list>
         <ion-item>
             <ion-label>Tipo de evento</ion-label>
-            <ion-select [(ngModel)]="selectedValues" multiple="true" (ionChange)="OnChange($event)" interface="alert">
+            <ion-select [(ngModel)]="selectedValues" cancel-text="CANCELAR" multiple="true" (ionChange)="OnChange($event)" interface="alert">
                 <ion-select-option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.descripcion}}</ion-select-option>
             </ion-select>
         </ion-item>
