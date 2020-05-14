@@ -2,6 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { IEvento } from '../../models/evento.interface';
 import { ITipoEvento } from '../../models/tipo-evento.interface';
+import { IImagenEvento } from '../../models/imagenes-evento.interface';
 import { EventoService } from '../../services/evento.service';
 
 @Component({
@@ -43,6 +44,7 @@ export class EventoDetailPage implements OnInit {
       icono: 'sync' 
     }];
   evento: IEvento;
+  imagnesEventos: IImagenEvento[];
 
   constructor( private route: Router,private eventoService: EventoService ) { 
     let evento = this.route.getCurrentNavigation().extras.state;
@@ -59,7 +61,10 @@ export class EventoDetailPage implements OnInit {
       linkContacto: evento.linkContacto,
       celularContacto: evento.celularContacto
     }
-    console.log(eventoService.getImagenes(evento.id));
+    eventoService.getImagenes(evento.id).subscribe(response =>{
+      this.imagnesEventos=response;
+      console.log(this.imagnesEventos);
+    });
   }
 
   ngOnInit() {}

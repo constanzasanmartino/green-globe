@@ -7,6 +7,7 @@ import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/fires
 
 import { IEvento } from '../models/evento.interface'
 import { ITipoEvento } from '../models/tipo-evento.interface';
+import { IImagenEvento } from '../models/imagenes-evento.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +17,11 @@ export class EventoService {
 
   private tipoEventosCollection: AngularFirestoreCollection<ITipoEvento>;
   private eventosCollection: AngularFirestoreCollection<IEvento>;
+  private imagenEventosCollection: AngularFirestoreCollection<IImagenEvento>;
   private tipoEventos: Observable<ITipoEvento[]>;
   private eventos: Observable<IEvento[]>;
-  private imagenesEvento: any[];
+  private imagenEventos: Observable<IImagenEvento[]>;
+  
   constructor( private db: AngularFirestore ) { }
 
   getEventos() {
@@ -49,16 +52,17 @@ export class EventoService {
     return this.tipoEventos;
   }
   getImagenes(id:String) {
-     this.db.collection('eventos/'+id +'/imagenes').snapshotChanges().subscribe((imagenes) => {
-      this.imagenesEvento = [];
-      imagenes.forEach((imagen: any) => {
-        this.imagenesEvento.push({
-          id: imagen.payload.doc.id,
-          data: imagen.payload.doc.data()
+    this.imagenEventosCollection = this.db.collection<IImagenEvento>('eventos/'+id +'/imagenes'); 
+   this.imagenEventos= this.db.collection<IImagenEvento>('eventos/'+id +'/imagenes').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
         });
       })
-    });
+    );
 
-    return this.imagenesEvento;
+    return this.imagenEventos;
   }
 }
