@@ -9,5 +9,8 @@ export interface IEvento {
     foto: string,
     tipo: number,
     linkContacto?: string,
+    nombreContacto?: string,
+    mailContacto?: string,
     celularContacto?: string[]
+ 
 } 

@@ -32,8 +32,15 @@
             <div *ngIf="evento.linkContacto || evento.celularContacto ">
                 <a *ngIf="evento.linkContacto" href="{{evento.linkContacto}}">{{ evento.linkContacto }}</a>
                 <div>
+                    {{ evento.nombreContacto }}
+                </div>
+                <div>
+                    {{ evento.mailContacto }}
+                </div>
+                <div>
                     {{ evento.celularContacto }}
                 </div>
+                
             </div>
         </ion-card-content>
 

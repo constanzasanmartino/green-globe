@@ -59,7 +59,10 @@ export class EventoDetailPage implements OnInit {
       foto: evento.foto,
       tipo: evento.tipo,
       linkContacto: evento.linkContacto,
+      mailContacto: evento.mailContacto,
+      nombreContacto: evento.nombreContacto,
       celularContacto: evento.celularContacto
+      
     }
     eventoService.getImagenes(evento.id).subscribe(response =>{
       this.imagnesEventos=response;
