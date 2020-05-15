@@ -43,10 +43,16 @@ export class EventoDetailPage implements OnInit {
       color: 'tertiary',
       icono: 'sync' 
     }];
-  evento: IEvento;
-  imagnesEventos: IImagenEvento[];
 
-  constructor( private route: Router,private eventoService: EventoService ) { 
+    slideOpts = {
+      initialSlide: 1,
+      speed: 400
+    };
+
+  evento: IEvento;
+  imagnesEvento: IImagenEvento[] = [];
+
+  constructor( private route: Router, private eventoService: EventoService ) { 
     let evento = this.route.getCurrentNavigation().extras.state;
     this.evento = {
       id: evento.id,
@@ -64,9 +70,8 @@ export class EventoDetailPage implements OnInit {
       celularContacto: evento.celularContacto
       
     }
-    eventoService.getImagenes(evento.id).subscribe(response =>{
-      this.imagnesEventos=response;
-      console.log(this.imagnesEventos);
+    this.eventoService.getImagenes(evento.id).subscribe(response => {
+      this.imagnesEvento = response;
     });
   }
 

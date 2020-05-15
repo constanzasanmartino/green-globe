@@ -8,7 +8,12 @@
 </ion-header>
 
 <ion-content class="content-evento">
-    <ion-img *ngIf="evento.foto" [src]="evento.foto"></ion-img>
+    <!-- <ion-img *ngIf="evento.foto" [src]="evento.foto"></ion-img> -->
+    <ion-slides *ngIf="imagnesEvento.length > 0" pager="true" [options]="slideOpts">
+        <ion-slide *ngFor="let imagen of imagnesEvento">
+            <ion-img [src]="imagen.urlImagen"></ion-img>
+        </ion-slide>
+    </ion-slides>
     <ion-card mode="ios" class="evento">
         <ion-card-header>
             <ion-card-subtitle>{{evento.fechaInicio | date: 'dd/MM/yyyy HH:mm'}}</ion-card-subtitle>
@@ -40,7 +45,7 @@
                 <div>
                     {{ evento.celularContacto }}
                 </div>
-                
+
             </div>
         </ion-card-content>
 

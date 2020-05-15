@@ -51,9 +51,10 @@ export class EventoService {
     );
     return this.tipoEventos;
   }
-  getImagenes(id:String) {
-    this.imagenEventosCollection = this.db.collection<IImagenEvento>('eventos/'+id +'/imagenes'); 
-   this.imagenEventos= this.db.collection<IImagenEvento>('eventos/'+id +'/imagenes').snapshotChanges().pipe(
+
+  getImagenes(id: string) {
+    this.imagenEventosCollection = this.db.collection<IImagenEvento>('eventos/' + id +'/imagenes'); 
+    this.imagenEventos= this.db.collection<IImagenEvento>('eventos/'+ id +'/imagenes').snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
