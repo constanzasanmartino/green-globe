@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IEvento } from '../../models/evento.interface';
 import { ITipoEvento } from '../../models/tipo-evento.interface';
@@ -17,42 +17,45 @@ export class EventoDetailPage implements OnInit {
       id: 1,
       descripcion: 'Recoleccion de basura',
       color: 'warning',
-      icono: 'trash' 
+      icono: 'trash'
     },
     {
       id: 2,
       descripcion: 'Reduccion de recursos',
       color: 'danger',
-      icono: 'flashlight' 
+      icono: 'flashlight'
     },
     {
       id: 3,
       descripcion: 'Reforestacion',
       color: 'success',
-      icono: 'pulse' 
+      icono: 'pulse'
     },
     {
       id: 4,
       descripcion: 'Running',
       color: 'primary',
-      icono: 'walk' 
+      icono: 'walk'
     },
     {
       id: 5,
       descripcion: 'Reciclaje',
       color: 'tertiary',
-      icono: 'sync' 
+      icono: 'sync'
     }];
 
-    slideOpts = {
-      initialSlide: 1,
-      speed: 400
-    };
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400
+  };
 
   evento: IEvento;
   imagnesEvento: IImagenEvento[] = [];
 
-  constructor( private route: Router, private eventoService: EventoService ) { 
+  instagram: boolean = false;
+  facebook: boolean = false;
+
+  constructor(private route: Router, private eventoService: EventoService) {
     let evento = this.route.getCurrentNavigation().extras.state;
     this.evento = {
       id: evento.id,
@@ -68,12 +71,26 @@ export class EventoDetailPage implements OnInit {
       mailContacto: evento.mailContacto,
       nombreContacto: evento.nombreContacto,
       celularContacto: evento.celularContacto
-      
     }
+
+    if (evento.linkContacto) {
+      if (evento.linkContacto.includes('instagram')) this.instagram = true;
+      if (evento.linkContacto.includes('facebook')) this.facebook = true;
+    }
+
+    this.imagnesEvento = [
+      {
+        id: 0,
+        urlImagen:'../assets/default.jpg'
+      }
+    ]
+
     this.eventoService.getImagenes(evento.id).subscribe(response => {
-      this.imagnesEvento = response;
+      if ( response.length > 0 ) {
+        this.imagnesEvento = response;
+      }
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }

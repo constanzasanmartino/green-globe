@@ -17,6 +17,14 @@
     </ion-list>
 
     <ion-progress-bar *ngIf="loading" color="light" type="indeterminate"></ion-progress-bar>
+    <ion-segment mode="ios" (ionChange)="segmentChanged($event.target.value)" value="enProgreso">
+        <ion-segment-button value="enProgreso">
+            <ion-label>En Progreso</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="finalizados">
+            <ion-label>Finalizados</ion-label>
+        </ion-segment-button>
+    </ion-segment>
 
     <div *ngFor="let evento of eventos">
         <app-evento-card [evento]="evento"></app-evento-card>

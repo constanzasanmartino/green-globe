@@ -8,10 +8,11 @@
 </ion-header>
 
 <ion-content class="content-evento">
-    <!-- <ion-img *ngIf="evento.foto" [src]="evento.foto"></ion-img> -->
     <ion-slides *ngIf="imagnesEvento.length > 0" pager="true" [options]="slideOpts">
         <ion-slide *ngFor="let imagen of imagnesEvento">
-            <ion-img [src]="imagen.urlImagen"></ion-img>
+            <div class="imagen-container">
+                <ion-img [src]="imagen.urlImagen"></ion-img>
+            </div>
         </ion-slide>
     </ion-slides>
     <ion-card mode="ios" class="evento">
@@ -35,7 +36,6 @@
             <br>
             <ion-card-subtitle> <b class="b-size">Contacto</b> </ion-card-subtitle>
             <div *ngIf="evento.linkContacto || evento.celularContacto ">
-                <a *ngIf="evento.linkContacto" href="{{evento.linkContacto}}">{{ evento.linkContacto }}</a>
                 <div>
                     {{ evento.nombreContacto }}
                 </div>
@@ -45,6 +45,10 @@
                 <div>
                     {{ evento.celularContacto }}
                 </div>
+                <a *ngIf="evento.linkContacto" href="{{evento.linkContacto}}">
+                    <ion-icon *ngIf="instagram" size="large" name="logo-instagram"></ion-icon>
+                    <ion-icon *ngIf="facebook" size="large" name="logo-facebook"></ion-icon>
+                </a>
 
             </div>
         </ion-card-content>

@@ -44,10 +44,14 @@ export class EventoCardComponent implements OnInit {
     }];
 
   @Input() evento: IEvento;
+  imagenEvento: string = '../assets/default.jpg'
 
   constructor( private router: Router ) {}
 
   ngOnInit() {
+    if(this.evento.foto) {
+      this.imagenEvento = this.evento.foto;
+    }
   }
 
   goToEvent() {

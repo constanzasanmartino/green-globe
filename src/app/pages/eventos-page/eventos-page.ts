@@ -19,19 +19,36 @@ export class EventosPage {
   tipos: ITipoEvento[];
   listaCompletaDeEventos: IEvento[];
 
+  eventosFinalizados: IEvento[] = [];
+  eventosEnProgreso: IEvento[] = [];
+
   loading: boolean = true;
 
-  constructor( private eventoService: EventoService ) {
+  constructor( private eventoService: EventoService) {
 
     this.eventoService.getEventos().subscribe(response => {
       this.eventos = response;
       this.listaCompletaDeEventos = response;
+      this.eventosEnProgreso = this.listaCompletaDeEventos.filter(e => new Date(e.fechaInicio) > new Date)
+      this.eventos = this.eventosEnProgreso
       this.loading = false;
     })
 
     this.eventoService.getTiposEvento().subscribe(response => {
       this.tipos = response;
     })
+  }
+
+  segmentChanged(event) {
+    let fechaHoy = new Date
+    if (event == 'finalizados') {
+      this.eventosFinalizados = this.listaCompletaDeEventos.filter(e => new Date(e.fechaInicio) < new Date)
+      this.eventos = this.eventosFinalizados
+    }
+    if (event == 'enProgreso') {
+      this.eventosEnProgreso = this.listaCompletaDeEventos.filter(e => new Date(e.fechaInicio) > new Date)
+      this.eventos = this.eventosEnProgreso
+    }
   }
 
   OnChange(event: any) {
