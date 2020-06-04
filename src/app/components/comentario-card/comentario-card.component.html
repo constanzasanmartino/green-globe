@@ -1,0 +1,18 @@
+<ion-card mode="ios" class="comentarios-card">
+    <ion-card-header>
+        <ion-item>
+            <ion-avatar slot="start">
+                <img src="../assets/default-user.png">
+            </ion-avatar>
+            <ion-label>{{ comentarioEvento.nombreUsuario}}</ion-label>
+        </ion-item>
+    </ion-card-header>
+
+    <ion-card-content>
+        {{ comentarioEvento.comentario }}
+        <br>
+        <div class="fecha-container">
+            <ion-label>{{ comentarioEvento.fecha | date: 'dd/MM/yyyy HH:mm' }}</ion-label>
+        </div>
+    </ion-card-content>
+</ion-card>

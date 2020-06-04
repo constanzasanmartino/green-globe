@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IEvento } from '../../models/evento.interface';
+import { IEvento, IComentarioEvento } from '../../models/evento.interface';
 import { ITipoEvento } from '../../models/tipo-evento.interface';
 import { IImagenEvento } from '../../models/imagenes-evento.interface';
 import { EventoService } from '../../services/evento.service';
@@ -51,6 +51,7 @@ export class EventoDetailPage implements OnInit {
 
   evento: IEvento;
   imagnesEvento: IImagenEvento[] = [];
+  comentariosEvento: IComentarioEvento[] = [];
 
   instagram: boolean = false;
   facebook: boolean = false;
@@ -90,6 +91,12 @@ export class EventoDetailPage implements OnInit {
         this.imagnesEvento = response;
       }
     });
+
+    this.eventoService.getComentarios(evento.id).subscribe(response => {
+      if ( response.length > 0) {
+        this.comentariosEvento = response
+      }
+    })
   }
 
   ngOnInit() { }

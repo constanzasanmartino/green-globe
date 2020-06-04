@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore'
 
-import { IEvento } from '../models/evento.interface'
+import { IEvento, IComentarioEvento } from '../models/evento.interface';
 import { ITipoEvento } from '../models/tipo-evento.interface';
 import { IImagenEvento } from '../models/imagenes-evento.interface';
 
@@ -21,8 +21,10 @@ export class EventoService {
   private tipoEventos: Observable<ITipoEvento[]>;
   private eventos: Observable<IEvento[]>;
   private imagenEventos: Observable<IImagenEvento[]>;
-  
-  constructor( private db: AngularFirestore ) { }
+  private comentariosEventoCollection: AngularFirestoreCollection<IComentarioEvento>;
+  private comentariosEvento: Observable<IComentarioEvento[]>
+
+  constructor(private db: AngularFirestore) { }
 
   getEventos() {
     this.eventosCollection = this.db.collection<IEvento>('eventos', ref => ref.orderBy('fechaInicio', 'asc'));
@@ -53,8 +55,8 @@ export class EventoService {
   }
 
   getImagenes(id: string) {
-    this.imagenEventosCollection = this.db.collection<IImagenEvento>('eventos/' + id +'/imagenes'); 
-    this.imagenEventos= this.db.collection<IImagenEvento>('eventos/'+ id +'/imagenes').snapshotChanges().pipe(
+    this.imagenEventosCollection = this.db.collection<IImagenEvento>('eventos/' + id + '/imagenes');
+    this.imagenEventos = this.db.collection<IImagenEvento>('eventos/' + id + '/imagenes').snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -65,5 +67,21 @@ export class EventoService {
     );
 
     return this.imagenEventos;
+  }
+
+  getComentarios(id: string) {
+    this.comentariosEventoCollection = this.db.collection<IComentarioEvento>('eventos/' + id + '/comentarios');
+    this.comentariosEvento = this.db.collection<IComentarioEvento>('eventos/' + id + '/comentarios').snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+
+    return this.comentariosEvento;
+
   }
 }

@@ -23,10 +23,11 @@ export class EventosPage {
   eventosFinalizados: IEvento[] = [];
   eventosEnProgreso: IEvento[] = [];
 
-  all:boolean=false;
+  all: boolean = false;
   loading: boolean = true;
+  showFilters: boolean = false;
 
-  constructor( private eventoService: EventoService) {
+  constructor(private eventoService: EventoService) {
 
     this.eventoService.getEventos().subscribe(response => {
       this.eventos = response;
@@ -39,7 +40,7 @@ export class EventosPage {
     this.eventoService.getTiposEvento().subscribe(response => {
       this.tipos = response;
     })
-    
+
   }
 
   segmentChanged(event) {
@@ -54,35 +55,35 @@ export class EventosPage {
     }
   }
 
- /* OnChange(event: any) {
-    console.log(event);
-    if (this.selectedValues.length > 0) {
-      
-      this.eventos = this.listaCompletaDeEventos.filter(item => {
-        for (let index = 0; index < this.selectedValues.length; index++) {
-          const element = this.selectedValues[index];
-          if (item.tipo == element) {
-            return true;
-          };
-        }
-        return false;
-      });
-    }
-
-   else {
+  /* OnChange(event: any) {
+     console.log(event);
+     if (this.selectedValues.length > 0) {
+       
+       this.eventos = this.listaCompletaDeEventos.filter(item => {
+         for (let index = 0; index < this.selectedValues.length; index++) {
+           const element = this.selectedValues[index];
+           if (item.tipo == element) {
+             return true;
+           };
+         }
+         return false;
+       });
+     }
+ 
+    else {
+       this.eventos = this.listaCompletaDeEventos;
+     }
+     */
+  filtrar(event: any) {
+    if (this.all) {
       this.eventos = this.listaCompletaDeEventos;
     }
-    */
-  Filtrar(event: any){
-    if(this.all){
-      this.eventos = this.listaCompletaDeEventos;
-    }
-    else{
-      this.selectedValues=[];
+    else {
+      this.selectedValues = [];
       for (let index = 0; index < this.tipos.length; index++) {
-       if(this.tipos[index].cheked){
-         this.selectedValues.push(this.tipos[index].id)
-       }
+        if (this.tipos[index].cheked) {
+          this.selectedValues.push(this.tipos[index].id)
+        }
       }
       this.eventos = this.listaCompletaDeEventos.filter(item => {
         for (let index = 0; index < this.selectedValues.length; index++) {
@@ -95,12 +96,16 @@ export class EventosPage {
       });
     }
   }
-       
- selectTypes(){
-      for (let index = 0; index < this.tipos.length; index++) {
-        this.tipos[index].cheked=this.all;
-        }
-      }
+
+  selectTypes() {
+    for (let index = 0; index < this.tipos.length; index++) {
+      this.tipos[index].cheked = this.all;
+    }
+  }
+
+  showFilter() {
+    this.showFilters = !this.showFilters
+  }
 
 }
 

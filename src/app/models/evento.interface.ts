@@ -12,5 +12,11 @@ export interface IEvento {
     nombreContacto?: string,
     mailContacto?: string,
     celularContacto?: string[]
- 
 } 
+
+export interface IComentarioEvento {
+    id?: string,
+    nombreUsuario: string,
+    comentario: string,
+    fecha: string
+}
