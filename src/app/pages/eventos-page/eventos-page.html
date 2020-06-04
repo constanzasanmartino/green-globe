@@ -7,14 +7,29 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+    <ion-title>
+         Tipos de   Eventos
+        </ion-title> 
     <ion-list>
+        <ion-item >
+            <ion-label>Todos/Ninguno</ion-label>
+            <ion-checkbox  [(ngModel)]="all" (ionChange)="selectTypes()" ></ion-checkbox>
+        </ion-item>
+        <ion-item *ngFor="let tipo of tipos">
+          <ion-label>{{tipo.descripcion}}</ion-label>
+          <ion-checkbox  [(ngModel)]="tipo.cheked"></ion-checkbox>
+        </ion-item>
+        
+      </ion-list>
+      <ion-button expand="block"  color="success" (ionFocus)="Filtrar($event)">Consultar</ion-button>
+   <!-- <ion-list>
         <ion-item>
             <ion-label>Tipo de evento</ion-label>
             <ion-select [(ngModel)]="selectedValues" cancel-text="CANCELAR" multiple="true" (ionChange)="OnChange($event)" interface="alert">
                 <ion-select-option *ngFor="let tipo of tipos" [value]="tipo.id">{{tipo.descripcion}}</ion-select-option>
             </ion-select>
         </ion-item>
-    </ion-list>
+    </ion-list>-->
 
     <ion-progress-bar *ngIf="loading" color="light" type="indeterminate"></ion-progress-bar>
 
