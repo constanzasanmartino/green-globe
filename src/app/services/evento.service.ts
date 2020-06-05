@@ -70,7 +70,7 @@ export class EventoService {
   }
 
   getComentarios(id: string) {
-    this.comentariosEventoCollection = this.db.collection<IComentarioEvento>('eventos/' + id + '/comentarios',  ref => ref.orderBy('nombreUsuario', 'asc'));
+    this.comentariosEventoCollection = this.db.collection<IComentarioEvento>('eventos/' + id + '/comentarios',  ref => ref.orderBy('fecha', 'desc'));
     this.comentariosEvento = this.db.collection<IComentarioEvento>('eventos/' + id + '/comentarios').snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
