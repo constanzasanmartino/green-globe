@@ -14,7 +14,6 @@ export class ComentarioCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.comentarioEvento)
   }
 
 }
