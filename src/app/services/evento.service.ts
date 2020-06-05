@@ -56,7 +56,7 @@ export class EventoService {
 
   getImagenes(id: string) {
     this.imagenEventosCollection = this.db.collection<IImagenEvento>('eventos/' + id + '/imagenes');
-    this.imagenEventos = this.db.collection<IImagenEvento>('eventos/' + id + '/imagenes').snapshotChanges().pipe(
+    this.imagenEventos = this.imagenEventosCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -71,7 +71,7 @@ export class EventoService {
 
   getComentarios(id: string) {
     this.comentariosEventoCollection = this.db.collection<IComentarioEvento>('eventos/' + id + '/comentarios',  ref => ref.orderBy('fecha', 'desc'));
-    this.comentariosEvento = this.db.collection<IComentarioEvento>('eventos/' + id + '/comentarios').snapshotChanges().pipe(
+    this.comentariosEvento = this.comentariosEventoCollection.snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();
@@ -84,4 +84,5 @@ export class EventoService {
     return this.comentariosEvento;
 
   }
+
 }
