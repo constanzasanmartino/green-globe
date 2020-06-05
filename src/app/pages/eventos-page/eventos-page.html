@@ -12,12 +12,16 @@
     <div *ngIf="showFilters">
         <ion-list>
             <ion-item>
-                <ion-label>Todos/Ninguno</ion-label>
-                <ion-checkbox [(ngModel)]="all" (ionChange)="selectTypes()"></ion-checkbox>
+                <ion-label>Todos</ion-label>
+                <ion-checkbox [(ngModel)]="all" (ionChange)="selectAllTypes()"></ion-checkbox>
+            </ion-item>
+            <ion-item>
+                <ion-label>Ninguno</ion-label>
+                <ion-checkbox [(ngModel)]="none" (ionChange)="selectNoneTypes()"></ion-checkbox>
             </ion-item>
             <ion-item *ngFor="let tipo of tipos">
                 <ion-label>{{tipo.descripcion}}</ion-label>
-                <ion-checkbox [(ngModel)]="tipo.cheked"></ion-checkbox>
+                <ion-checkbox [(ngModel)]="tipo.cheked" (ionChange)="selectAnType(tipo)"></ion-checkbox>
             </ion-item>
 
         </ion-list>
