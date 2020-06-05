@@ -19,13 +19,15 @@ export class EventosPage {
   eventos: IEvento[];
   tipos: ITipoEvento[];
   listaCompletaDeEventos: IEvento[];
-
+  
   eventosFinalizados: IEvento[] = [];
   eventosEnProgreso: IEvento[] = [];
-
-  all: boolean = false;
+  cantidadDeTiposDeEventosSeleccionados:number=0;
+  all:boolean=false;
+  none:false=false;
   loading: boolean = true;
   showFilters: boolean = false;
+  esEnProgreso:boolean=true;
 
   constructor(private eventoService: EventoService) {
 
@@ -48,10 +50,12 @@ export class EventosPage {
     if (event == 'finalizados') {
       this.eventosFinalizados = this.listaCompletaDeEventos.filter(e => new Date(e.fechaInicio) < new Date)
       this.eventos = this.eventosFinalizados
+      this.esEnProgreso=false;
     }
     if (event == 'enProgreso') {
       this.eventosEnProgreso = this.listaCompletaDeEventos.filter(e => new Date(e.fechaInicio) > new Date)
       this.eventos = this.eventosEnProgreso
+      this.esEnProgreso=true;
     }
   }
 
@@ -75,17 +79,25 @@ export class EventosPage {
      }
      */
   filtrar(event: any) {
-    if (this.all) {
-      this.eventos = this.listaCompletaDeEventos;
-    }
-    else {
       this.selectedValues = [];
       for (let index = 0; index < this.tipos.length; index++) {
         if (this.tipos[index].cheked) {
           this.selectedValues.push(this.tipos[index].id)
         }
       }
-      this.eventos = this.listaCompletaDeEventos.filter(item => {
+      if (this.esEnProgreso){
+        this.eventos = this.eventosEnProgreso.filter(item => {
+          for (let index = 0; index < this.selectedValues.length; index++) {
+            const element = this.selectedValues[index];
+            if (item.tipo == element) {
+              return true;
+            };
+          }
+          return false;
+        });
+     }
+     else{
+      this.eventos = this.eventosFinalizados.filter(item => {
         for (let index = 0; index < this.selectedValues.length; index++) {
           const element = this.selectedValues[index];
           if (item.tipo == element) {
@@ -94,14 +106,48 @@ export class EventosPage {
         }
         return false;
       });
-    }
+
+     }
+      
+     this.showFilters = !this.showFilters; 
   }
 
-  selectTypes() {
+  selectAllTypes(){
+  if(this.all){ 
     for (let index = 0; index < this.tipos.length; index++) {
       this.tipos[index].cheked = this.all;
     }
+      this.none=false;
+   }
+   else{
+     if (this.cantidadDeTiposDeEventosSeleccionados==this.tipos.length){
+      for (let index = 0; index < this.tipos.length; index++) {
+        this.tipos[index].cheked = this.all;
+      }
+     }
+   }
+ }
+  selectNoneTypes(){
+  if(this.none){
+
+    for (let index = 0; index < this.tipos.length; index++) {
+      this.tipos[index].cheked = false;
+    }
+   this.cantidadDeTiposDeEventosSeleccionados=0;
+   this.all=false;
   }
+}
+  
+ selectAnType (type:ITipoEvento){
+    if (type.cheked){
+      this.cantidadDeTiposDeEventosSeleccionados+=1;
+      this.none=false;
+    }
+    else{
+      this.cantidadDeTiposDeEventosSeleccionados-=1;
+      this.all=false;
+    }
+   }
 
   showFilter() {
     this.showFilters = !this.showFilters
