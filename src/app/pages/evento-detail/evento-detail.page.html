@@ -54,6 +54,9 @@
         </ion-card-content>
 
     </ion-card>
-    <app-comentario-card *ngFor="let comentario of comentariosEvento" [comentarioEvento]="comentario"></app-comentario-card>
+    <div *ngFor="let comentario of comentariosEvento">
+        <app-comentario-card  [comentarioEvento]="comentario"></app-comentario-card>
+    </div>
+    
 
 </ion-content>

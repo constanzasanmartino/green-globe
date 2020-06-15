@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-
+import {EventoCardComponent} from '../../components/evento-card/evento-card.component'
 import { EventoDetailPage } from './evento-detail.page';
 import { ComponentsModule } from '../../components/components.module';
 

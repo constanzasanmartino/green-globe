@@ -10,7 +10,7 @@ import { EventoService } from '../../services/evento.service';
   templateUrl: './evento-detail.page.html',
   styleUrls: ['./evento-detail.page.scss'],
 })
-export class EventoDetailPage implements OnInit {
+export class EventoDetailPage  {
 
   tipos: ITipoEvento[] = [
     {
@@ -55,8 +55,11 @@ export class EventoDetailPage implements OnInit {
 
   instagram: boolean = false;
   facebook: boolean = false;
+  
 
-  constructor(private route: Router, private eventoService: EventoService) {
+  constructor( private route: Router, private eventoService: EventoService) {
+    if (this.route.getCurrentNavigation()!=null){
+      console.log('paso la pucha...');
     let evento = this.route.getCurrentNavigation().extras.state;
     this.evento = {
       id: evento.id,
@@ -98,6 +101,6 @@ export class EventoDetailPage implements OnInit {
       }
     })
   }
-
-  ngOnInit() { }
+  }
+  
 }

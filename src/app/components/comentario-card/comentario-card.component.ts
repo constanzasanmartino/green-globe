@@ -10,6 +10,7 @@ import { IComentarioEvento } from '../../models/evento.interface';
 export class ComentarioCardComponent implements OnInit {
 
   @Input() comentarioEvento: IComentarioEvento;
+  
 
   constructor() { }
 
