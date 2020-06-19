@@ -7,6 +7,6 @@ export class AppPage {
 
  
   getText(s:string){
-    return element(by.css(s)).getText() as Promise<string>;
+    return element(by.css(s)).getText() ;
   }
 }
