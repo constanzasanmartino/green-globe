@@ -9,8 +9,10 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    
-    'browserName': 'firefox'
+    chromeOptions: {
+      args: [ "--headless" ]
+    },
+    'browserName': 'chrome'
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
