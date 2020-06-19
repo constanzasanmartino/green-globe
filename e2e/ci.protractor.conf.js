@@ -9,10 +9,8 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    chromeOptions: {
-      args: [ "-no-sandboxs" ]
-    },
-    'browserName': 'chrome'
+    
+    'browserName': 'firefox'
   },
   directConnect: true,
   baseUrl: 'http://localhost:4200/',
