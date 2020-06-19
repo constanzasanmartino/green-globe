@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "e2e_headless": "ng e2e --protractor-config='e2e/ci.protractor.conf.js'"
   },
   "private": true,
   "dependencies": {
