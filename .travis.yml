@@ -12,7 +12,7 @@ before_script:
   - npm install -g @angular/cli
 script:
   - ng test --watch=false --browsers=ChromeHeadless
-  - ng e2e --protractor-config='e2e/ci.protractor.conf.js  --webdriver-update false'
+  - ng e2e --protractor-config='e2e/ci.protractor.conf.js  --webdriver-update false
   - ng build --prod=false
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
