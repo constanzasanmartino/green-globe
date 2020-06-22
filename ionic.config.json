@@ -1,0 +1,8 @@
+{
+  "name": "GreenGlobe",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}
