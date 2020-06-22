@@ -15,7 +15,7 @@ script:
 deploy:
    provider: pages
    cleanup: true
-   github-token: $GITHUB_TOKEN
+   github_token: $GITHUB_TOKEN
    local_dir: www
    on:
     branch: master
