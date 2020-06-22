@@ -15,12 +15,6 @@ script:
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
 
-deploy:
-   provider: pages
-   cleanup: true
-   github_token: $GITHUB_TOKEN
-   on:
-    branch: master
 
 notifications:
   email:
