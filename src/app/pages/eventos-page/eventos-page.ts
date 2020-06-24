@@ -25,7 +25,7 @@ export class EventosPage {
   eventosEnProgreso: IEvento[] = [];
   cantidadDeTiposDeEventosSeleccionados:number=0;
   all:boolean=false;
-  none:false=false;
+  none:boolean=false;
   loading: boolean = true;
   showFilters: boolean = false;
   esEnProgreso:boolean=true;
@@ -79,11 +79,11 @@ export class EventosPage {
        this.eventos = this.listaCompletaDeEventos;
      }
      */
-  filtrar(event: any) {
+  filtrar() {
       this.selectedValues = [];
       for (let index = 0; index < this.tipos.length; index++) {
         if (this.tipos[index].cheked) {
-          this.selectedValues.push(this.tipos[index].id)
+          this.selectedValues.push(this.tipos[index].id);
         }
       }
       if (this.esEnProgreso){
