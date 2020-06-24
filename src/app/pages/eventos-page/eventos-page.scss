@@ -3,8 +3,6 @@ ion-content ion-toolbar {
 }
 
 ion-toolbar {
-    background-color: #379b80;
-    color: white;
     text-align: center;
 }
 
@@ -28,4 +26,8 @@ ion-progress-bar {
 ion-checkbox {
     --background-checked: #379b80;
     --border-color-checked: #379b80;
+}
+
+ion-fab {
+    margin-right: 10px;
 }

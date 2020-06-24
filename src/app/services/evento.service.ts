@@ -85,4 +85,8 @@ export class EventoService {
 
   }
 
+  agregarEvento(evento: IEvento) {
+    return this.eventosCollection.add(evento);
+  }
+
 }

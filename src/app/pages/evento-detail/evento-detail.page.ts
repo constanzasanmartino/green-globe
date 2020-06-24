@@ -10,7 +10,7 @@ import { EventoService } from '../../services/evento.service';
   templateUrl: './evento-detail.page.html',
   styleUrls: ['./evento-detail.page.scss'],
 })
-export class EventoDetailPage  {
+export class EventoDetailPage {
 
   tipos: ITipoEvento[] = [
     {
@@ -55,52 +55,58 @@ export class EventoDetailPage  {
 
   instagram: boolean = false;
   facebook: boolean = false;
-  
 
-  constructor( private route: Router, private eventoService: EventoService) {
-    if (this.route.getCurrentNavigation()!=null){
-      console.log('paso la pucha...');
-    let evento = this.route.getCurrentNavigation().extras.state;
-    this.evento = {
-      id: evento.id,
-      nombre: evento.nombre,
-      descripcion: evento.descripcion,
-      descripcionCorta: evento.descripcionCorta,
-      fechaInicio: evento.fechaInicio,
-      fechaFin: evento.fechaFin,
-      ubicacion: evento.ubicacion,
-      foto: evento.foto,
-      tipo: evento.tipo,
-      linkContacto: evento.linkContacto,
-      mailContacto: evento.mailContacto,
-      nombreContacto: evento.nombreContacto,
-      celularContacto: evento.celularContacto
+
+  constructor(private route: Router, private eventoService: EventoService) {
+    if (this.route.getCurrentNavigation() != null) {
+      let evento = this.route.getCurrentNavigation().extras.state;
+      this.evento = {
+        id: evento.id,
+        nombre: evento.nombre,
+        descripcion: evento.descripcion,
+        descripcionCorta: evento.descripcionCorta,
+        fechaInicio: evento.fechaInicio,
+        fechaFin: evento.fechaFin,
+        ubicacion: evento.ubicacion,
+        foto: evento.foto,
+        tipo: evento.tipo,
+        linkContacto: evento.linkContacto,
+        mailContacto: evento.mailContacto,
+        nombreContacto: evento.nombreContacto,
+        celularContacto: evento.celularContacto
+      }
+
+      if (evento.linkContacto) {
+        if (evento.linkContacto.includes('instagram')) this.instagram = true;
+        if (evento.linkContacto.includes('facebook')) this.facebook = true;
+      }
+
+      this.imagnesEvento = [
+        {
+          id: 0,
+          urlImagen: '../assets/default.jpg'
+        }
+      ]
+
+      this.eventoService.getImagenes(evento.id).subscribe(response => {
+        if (response.length > 0) {
+          this.imagnesEvento = response;
+        } else  {
+          this.imagnesEvento = [
+            {
+              id: 0,
+              urlImagen: this.evento.foto
+            }
+          ]
+        }
+      });
+
+      this.eventoService.getComentarios(evento.id).subscribe(response => {
+        if (response.length > 0) {
+          this.comentariosEvento = response
+        }
+      })
     }
-
-    if (evento.linkContacto) {
-      if (evento.linkContacto.includes('instagram')) this.instagram = true;
-      if (evento.linkContacto.includes('facebook')) this.facebook = true;
-    }
-
-    this.imagnesEvento = [
-      {
-        id: 0,
-        urlImagen:'../assets/default.jpg'
-      }
-    ]
-
-    this.eventoService.getImagenes(evento.id).subscribe(response => {
-      if ( response.length > 0 ) {
-        this.imagnesEvento = response;
-      }
-    });
-
-    this.eventoService.getComentarios(evento.id).subscribe(response => {
-      if ( response.length > 0) {
-        this.comentariosEvento = response
-      }
-    })
   }
-  }
-  
+
 }

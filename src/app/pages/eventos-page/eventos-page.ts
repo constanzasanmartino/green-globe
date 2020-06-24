@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { EventoService } from '../../services/evento.service';
 
@@ -29,7 +30,7 @@ export class EventosPage {
   showFilters: boolean = false;
   esEnProgreso:boolean=true;
 
-  constructor(private eventoService: EventoService) {
+  constructor(private eventoService: EventoService, private router: Router) {
 
     this.eventoService.getEventos().subscribe(response => {
       this.eventos = response;
@@ -152,6 +153,10 @@ export class EventosPage {
   showFilter() {
     this.showFilters = !this.showFilters
   }
+
+  newEvent() {
+  this.router.navigate(['/nuevo-evento']);
+  } 
 
 }
 

@@ -1,0 +1,122 @@
+<ion-header>
+    <ion-toolbar color="greenglobe">
+        <ion-title>Nuevo Evento</ion-title>
+        <ion-buttons slot="start">
+            <ion-back-button></ion-back-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="grisClaro">
+    <ion-card>
+        <ion-card-content>
+            <form #form="ngForm">
+                <ion-list>
+                    <!-- Tipo -->
+                    <ion-item>
+                        <ion-label>Tipo de evento</ion-label>
+                        <ion-select [(ngModel)]="evento.tipo" [ngModelOptions]="{standalone: true}" cancel-text="CANCELAR" interface="alert" required>
+                            <ion-select-option required *ngFor="let tipo of tiposEvento" [value]="tipo.id">{{tipo.descripcion}}
+                            </ion-select-option>
+                        </ion-select>
+                    </ion-item>
+                    <!-- Nombre -->
+                    <ion-item>
+                        <ion-input class="nameEvento" name="nombre" placeholder="Nombre del evento" [(ngModel)]="evento.nombre" type="text" required></ion-input>
+                    </ion-item>
+                    <!-- Foto Portada -->
+                    <ion-item *ngIf="hayFotoPortada">
+                        <ion-img [src]="photo"></ion-img>
+                    </ion-item>
+                    <ion-item>
+                        <ion-chip (click)="getPicture()">
+                            <ion-label> {{ portadaButtonText }}
+                                <ion-icon mode="ios" name="images"></ion-icon>
+                            </ion-label>
+                        </ion-chip>
+                    </ion-item>
+                    <input style="display: none;" multiple type="file" #filePicker (change)="onFileChoose($event)" />
+
+                    <!-- Fecha -->
+                    <ion-item>
+                        <ion-icon mode="ios" name="time"></ion-icon>
+                        <ion-datetime name="fechaInicio" [(ngModel)]="evento.fechaInicio" display-format="DD MMM YYYY HH:mm" placeholder="Fecha de inicio" cancelText="Cancelar" doneText="Ok" required>
+                            Fecha
+                        </ion-datetime>
+                    </ion-item>
+                    <ion-item>
+                        <ion-icon mode="ios" name="time"></ion-icon>
+                        <ion-datetime name="fechaFin" [(ngModel)]="evento.fechaFin" display-format="DD MMM YYYY HH:mm" placeholder="Fecha de finalización" cancelText="Cancelar" doneText="Ok" required>
+                            Fecha
+                        </ion-datetime>
+                    </ion-item>
+                    <!-- Ubicacion -->
+                    <ion-item>
+                        <ion-icon mode="ios" name="location"></ion-icon>
+                        <ion-input name="ubicacion" placeholder="Ubicación" [(ngModel)]="evento.ubicacion" type="text" required></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <!-- Descripcion Corta -->
+                        <ion-icon mode="ios" name="create"></ion-icon>
+                        <ion-textarea name="descripcionCorta" placeholder="Descripcion corta" [(ngModel)]="evento.descripcionCorta" type="text" required>
+                        </ion-textarea>
+                    </ion-item>
+                    <ion-item>
+                        <!-- Descripcion -->
+                        <ion-icon mode="ios" name="create"></ion-icon>
+                        <ion-textarea name="descripcion" placeholder="Detalles" [(ngModel)]="evento.descripcion" type="text" required>
+                        </ion-textarea>
+                    </ion-item>
+                    <!-- Nombre Contacto -->
+                    <ion-item>
+                        <ion-icon mode="ios" name="person"></ion-icon>
+                        <ion-input name="nombreContacto" placeholder="Nombre de contacto" [(ngModel)]="evento.nombreContacto" type="text" required></ion-input>
+                    </ion-item>
+                    <!-- Mail Contacto -->
+                    <ion-item>
+                        <ion-icon mode="ios" name="mail"></ion-icon>
+                        <ion-input name="mailContacto" placeholder="Email de contacto" [(ngModel)]="evento.mailContacto" type="email"></ion-input>
+                    </ion-item>
+                    <!-- Celular Contacto -->
+                    <ion-item>
+                        <ion-icon mode="ios" name="call"></ion-icon>
+                        <ion-input name="celularContacto" placeholder="Celular de contacto" [(ngModel)]="evento.celularContacto" type="text"></ion-input>
+                    </ion-item>
+                    <!-- Link Contacto -->
+                    <ion-item>
+                        <ion-icon mode="ios" name="link"></ion-icon>
+                        <ion-input name="linkContacto" placeholder="Link de contacto" [(ngModel)]="evento.linkContacto" type="text"></ion-input>
+                    </ion-item>
+
+                    <!-- Imagenes -->
+                    <ion-item *ngIf="hayImagenes">
+                        <ion-slides pager="true" [options]="slideOpts">
+                            <ion-slide *ngFor="let i of imagenes">
+                                <div class="imagen-container">
+                                    <ion-img [src]="imagenes"></ion-img>
+                                </div>
+                            </ion-slide>
+                        </ion-slides>
+                    </ion-item>
+                    <!-- <ion-item>
+                        <ion-chip (click)="onSelectImagenes()">
+                            <ion-label> {{ imagenesButtonText }}
+                                <ion-icon mode="ios" name="images"></ion-icon>
+                            </ion-label>
+                        </ion-chip>
+                    </ion-item>
+                    <input style="display: none;" type="file" #filePickerMultiple (change)="onFileChooseMultiple($event)" /> -->
+
+                </ion-list>
+                <ion-button color="dark" expand="full" (click)="onCreateEvent()" [disabled]="form.invalid">
+                    <ion-icon slot="start" name="create"> </ion-icon>Crear
+                </ion-button>
+                <br>
+            </form>
+
+        </ion-card-content>
+    </ion-card>
+
+
+
+</ion-content>
