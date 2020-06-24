@@ -8,7 +8,7 @@ before_script:
   - npm install -g @angular/cli
   
 script:
-  - ng test --watch=false --browsers=ChromeHeadless
+  - ng test --watch=false --browsers=ChromeHeadless --code-coverage --reporters=coverage-istanbul
   - ng e2e --protractor-config='e2e/ci.protractor.conf.js'  
   - ng build --prod=false
 
@@ -22,5 +22,3 @@ notifications:
     -constanza.sanmartino@gmail.com
     -chiesapaula9@gmail.com 
     
-  on_failure: always
-  on_success: change
