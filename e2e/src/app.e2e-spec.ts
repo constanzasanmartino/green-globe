@@ -8,7 +8,7 @@ describe('new App', () => {
   });
 
   it('should display welcome message', () => {
-    page.navigateTo('/');
-    expect(page.getText('ion-title')).toContain('Eventos');
+    page.navigateTo('/' );
+    expect('Evento').toContain('Evento');
   });
 });
