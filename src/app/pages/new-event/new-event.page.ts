@@ -9,6 +9,7 @@ import { storage } from 'firebase';
 import { EventoService } from '../../services/evento.service';
 import { ITipoEvento } from '../../models/tipo-evento.interface';
 import { IEvento } from '../../models/evento.interface';
+import { IImagenEvento } from '../../models/imagenes-evento.interface';
 
 @Component({
   selector: 'app-new-event',
@@ -43,7 +44,7 @@ export class NewEventPage implements OnInit {
 
   yourImage: any;
 
-  imagenes: any[] = []
+  imagenes: IImagenEvento[] = []
 
   loading: boolean = false;
 
@@ -79,6 +80,7 @@ export class NewEventPage implements OnInit {
 
     reader.onload = () => {
       this.hayFotoPortada = true;
+      console.log(reader.result.toString())
       this.photo = reader.result.toString();
       let rnd = (Math.random() * (9999999999)).toString();
       let img = 'pictures/eventos' + rnd;
@@ -89,7 +91,7 @@ export class NewEventPage implements OnInit {
 
   }
 
-  
+
   onSelectImagenes() {
     this.imagenesButtonText = 'AGREGAR IMÁGEN'
     this.fileMultiplePickerRef.nativeElement.click();
@@ -97,30 +99,22 @@ export class NewEventPage implements OnInit {
 
 
   onFileChooseMultiple(event: Event) {
-    console.log((event.target as HTMLInputElement).files)
-    const file = (event.target as HTMLInputElement).files[0];
-    const pattern = /image-*/;
-    const reader = new FileReader();
+    let files = (event.target as HTMLInputElement).files;
 
-    if (!file.type.match(pattern)) {
-      console.log('File format not supported');
-      return;
+    for (var i = 0; i < files.length; i++) {
+      let file = files[i];
+      let reader = new FileReader();
+      reader.onload = () => {
+        this.hayImagenes = true;
+        let photo = reader.result.toString();
+        this.imagenes.push(
+          {
+            id: i,
+            urlImagen: photo
+          })
+      }
+      reader.readAsDataURL(file);
     }
-
-    console.log(this.imagenes)
-    reader.onload = () => {
-      this.hayImagenes = true;
-      let photo = reader.result.toString();
-      this.imagenes.push(photo)
-      console.log(this.imagenes)
-      // let rnd = (Math.random() * (9999999999)).toString();
-      // let img = 'pictures/eventos' + rnd;
-      // const pictures = storage().ref(img);
-      // pictures.putString(this.photo.toString(), 'data_url');
-      // console.log(this.photo.toString())
-    };
-    reader.readAsDataURL(file);
-
   }
 
 
@@ -130,15 +124,16 @@ export class NewEventPage implements OnInit {
     if (this.evento.foto) {
       this.evento.foto = this.photo.toString()
     }
-    if( this.validarFechas(this.evento.fechaFin, this.evento.fechaInicio )) {
+    if (this.validarFechas(this.evento.fechaFin, this.evento.fechaInicio)) {
 
       this.eventoService.agregarEvento(this.evento).then(response => {
         if (response.id) {
+          // this.eventoService.agregarFotos(this.imagenes, response.id)
           console.log('evento ' + response.id + ' creado')
           this.loading = false;
           this.mostrarAlerta('Evento creado con exito!!!', 'Juntos podemos salvar el planeta!')
           this.volver()
-  
+
         } else {
           this.loading = false;
           this.mostrarAlerta('Error al guardar el evento!', 'Intente nuevamente')

@@ -93,23 +93,22 @@
                         <ion-slides pager="true" [options]="slideOpts">
                             <ion-slide *ngFor="let i of imagenes">
                                 <div class="imagen-container">
-                                    <ion-img [src]="imagenes"></ion-img>
+                                    <ion-img [src]="i.urlImagen"></ion-img>
                                 </div>
                             </ion-slide>
                         </ion-slides>
                     </ion-item>
-                    <!-- <ion-item>
+                    <ion-item>
                         <ion-chip (click)="onSelectImagenes()">
                             <ion-label> {{ imagenesButtonText }}
                                 <ion-icon mode="ios" name="images"></ion-icon>
                             </ion-label>
                         </ion-chip>
                     </ion-item>
-                    <input style="display: none;" type="file" #filePickerMultiple (change)="onFileChooseMultiple($event)" /> -->
+                    <input style="display: none;" type="file" name="images[]" #filePickerMultiple (change)="onFileChooseMultiple($event)" multiple />
 
                 </ion-list>
-                <ion-button *ngIf="!loading" color="dark" expand="full" (click)="onCreateEvent()">
-                    <!-- <ion-button *ngIf="!loading" color="dark" expand="full" (click)="onCreateEvent()" [disabled]="form.invalid"> -->
+                <ion-button *ngIf="!loading" color="dark" expand="full" (click)="onCreateEvent()" [disabled]="form.invalid">
                     <ion-icon slot="start" name="create"> </ion-icon>Crear
                 </ion-button>
                 <ion-progress-bar *ngIf="loading" color="light" type="indeterminate"></ion-progress-bar>
