@@ -80,7 +80,6 @@ export class NewEventPage implements OnInit {
 
     reader.onload = () => {
       this.hayFotoPortada = true;
-      console.log(reader.result.toString())
       this.photo = reader.result.toString();
       let rnd = (Math.random() * (9999999999)).toString();
       let img = 'pictures/eventos' + rnd;
@@ -107,6 +106,10 @@ export class NewEventPage implements OnInit {
       reader.onload = () => {
         this.hayImagenes = true;
         let photo = reader.result.toString();
+        // let rnd = (Math.random() * (9999999999)).toString();
+        // let img = 'pictures/eventos' + rnd;
+        // const pictures = storage().ref(img);
+        // pictures.putString(photo.toString(), 'data_url');
         this.imagenes.push(
           {
             id: i,
@@ -128,7 +131,9 @@ export class NewEventPage implements OnInit {
 
       this.eventoService.agregarEvento(this.evento).then(response => {
         if (response.id) {
-          // this.eventoService.agregarFotos(this.imagenes, response.id)
+          if (this.imagenes.length > 0) {
+            // this.eventoService.agregarFotos(this.imagenes, response.id)
+          }
           console.log('evento ' + response.id + ' creado')
           this.loading = false;
           this.mostrarAlerta('Evento creado con exito!!!', 'Juntos podemos salvar el planeta!')
@@ -189,6 +194,21 @@ export class NewEventPage implements OnInit {
 
     this.hayImagenes = false;
     this.imagenesButtonText = 'SELECCIONAR IMÁGENES'
+  }
+
+  onDeleteClick(ind) {
+    this.imagenes.splice(ind, 1)
+    if (this.imagenes.length == 0) {
+      this.hayImagenes = false;
+      this.imagenesButtonText = 'SELECCIONAR IMÁGENES'
+    }
+  }
+
+  onDeletePortadaClick() {
+    this.evento.foto = '';
+    this.hayFotoPortada = false;
+    this.photo = '';
+    this.portadaButtonText = 'SELECCIONAR PORTADA';
   }
 
 

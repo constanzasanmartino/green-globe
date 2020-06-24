@@ -16,7 +16,8 @@
                     <ion-item>
                         <ion-label>Tipo de evento</ion-label>
                         <ion-select [(ngModel)]="evento.tipo" [ngModelOptions]="{standalone: true}" cancel-text="CANCELAR" interface="alert" required>
-                            <ion-select-option required *ngFor="let tipo of tiposEvento" [value]="tipo.id">{{tipo.descripcion}}
+                            <ion-select-option required *ngFor="let tipo of tiposEvento" [value]="tipo.id">
+                                {{tipo.descripcion}}
                             </ion-select-option>
                         </ion-select>
                     </ion-item>
@@ -26,7 +27,10 @@
                     </ion-item>
                     <!-- Foto Portada -->
                     <ion-item *ngIf="hayFotoPortada">
-                        <ion-img [src]="photo"></ion-img>
+                        <div class="imagen-container">
+                            <ion-badge class="btn-portada" color="medium" (click)="onDeletePortadaClick()">Borrar</ion-badge>
+                            <ion-img [src]="photo"></ion-img>
+                        </div>
                     </ion-item>
                     <ion-item>
                         <ion-chip (click)="getPicture()">
@@ -91,10 +95,14 @@
                     <!-- Imagenes -->
                     <ion-item *ngIf="hayImagenes">
                         <ion-slides pager="true" [options]="slideOpts">
-                            <ion-slide *ngFor="let i of imagenes">
-                                <div class="imagen-container">
-                                    <ion-img [src]="i.urlImagen"></ion-img>
-                                </div>
+                            <ion-slide *ngFor="let i of imagenes; let ind = index;">
+                                <ion-item>
+                                    <div class="imagen-container">
+                                        <ion-badge class="btn" color="medium" (click)="onDeleteClick(ind)">Borrar
+                                        </ion-badge>
+                                        <ion-img [src]="i.urlImagen"></ion-img>
+                                    </div>
+                                </ion-item>
                             </ion-slide>
                         </ion-slides>
                     </ion-item>
