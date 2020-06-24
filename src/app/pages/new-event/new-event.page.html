@@ -108,9 +108,11 @@
                     <input style="display: none;" type="file" #filePickerMultiple (change)="onFileChooseMultiple($event)" /> -->
 
                 </ion-list>
-                <ion-button color="dark" expand="full" (click)="onCreateEvent()" [disabled]="form.invalid">
+                <ion-button *ngIf="!loading" color="dark" expand="full" (click)="onCreateEvent()">
+                    <!-- <ion-button *ngIf="!loading" color="dark" expand="full" (click)="onCreateEvent()" [disabled]="form.invalid"> -->
                     <ion-icon slot="start" name="create"> </ion-icon>Crear
                 </ion-button>
+                <ion-progress-bar *ngIf="loading" color="light" type="indeterminate"></ion-progress-bar>
                 <br>
             </form>
 
