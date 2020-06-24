@@ -80,6 +80,7 @@ export class NewEventPage implements OnInit {
 
     reader.onload = () => {
       this.hayFotoPortada = true;
+      console.log(this.hayFotoPortada)
       this.photo = reader.result.toString();
       let rnd = (Math.random() * (9999999999)).toString();
       let img = 'pictures/eventos' + rnd;
