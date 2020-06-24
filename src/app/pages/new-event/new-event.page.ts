@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
-import { AlertController, Platform } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 
 import { storage } from 'firebase';
 
@@ -45,10 +45,11 @@ export class NewEventPage implements OnInit {
 
   imagenes: any[] = []
 
+  loading: boolean = false;
+
   @ViewChild('filePicker', { static: false }) filePickerRef: ElementRef<HTMLInputElement>;
   @ViewChild('filePickerMultiple', { static: false }) fileMultiplePickerRef: ElementRef<HTMLInputElement>;
   photo: SafeResourceUrl;
-  isDesktop: boolean;
 
   constructor(private eventoService: EventoService, private alertCtrl: AlertController,
     private router: Router) {
@@ -124,17 +125,22 @@ export class NewEventPage implements OnInit {
 
 
   onCreateEvent() {
+    this.loading = true;
     console.log(this.evento)
-    this.evento.foto = this.photo.toString()
+    if (this.evento.foto) {
+      this.evento.foto = this.photo.toString()
+    }
     if( this.validarFechas(this.evento.fechaFin, this.evento.fechaInicio )) {
 
       this.eventoService.agregarEvento(this.evento).then(response => {
         if (response.id) {
           console.log('evento ' + response.id + ' creado')
+          this.loading = false;
           this.mostrarAlerta('Evento creado con exito!!!', 'Juntos podemos salvar el planeta!')
           this.volver()
   
         } else {
+          this.loading = false;
           this.mostrarAlerta('Error al guardar el evento!', 'Intente nuevamente')
         }
       })
