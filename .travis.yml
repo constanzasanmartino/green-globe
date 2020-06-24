@@ -18,7 +18,7 @@ after_success:
 
 notifications:
   email:
-    -rodriguezlucasjavier1984@gmail.com
-    -constanza.sanmartino@gmail.com
-    -chiesapaula9@gmail.com 
+    - rodriguezlucasjavier1984@gmail.com
+    - constanza.sanmartino@gmail.com
+    - chiesapaula9@gmail.com 
     
