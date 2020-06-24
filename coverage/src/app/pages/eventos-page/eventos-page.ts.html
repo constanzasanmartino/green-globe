@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">51.47% </span>
+        <span class="strong">61.43% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>35/68</span>
+        <span class='fraction'>43/70</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">35% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>7/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">35.71% </span>
+        <span class="strong">53.33% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/14</span>
+        <span class='fraction'>8/15</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">53.13% </span>
+        <span class="strong">61.54% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>34/64</span>
+        <span class='fraction'>40/65</span>
       </div>
     </div>
   </div>
@@ -200,7 +200,13 @@
 155
 156
 157
-158</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+158
+159
+160
+161
+162
+163</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,15 +240,15 @@
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2125x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -356,8 +362,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 &nbsp;
 import { EventoService } from '../../services/evento.service';
 &nbsp;
@@ -388,18 +399,18 @@ export class EventosPage {
   showFilters: boolean = false;
   esEnProgreso:boolean=true;
 &nbsp;
-  constructor(private eventoService: EventoService) {
+  constructor(private eventoService: EventoService, private router: Router) {
 &nbsp;
-    this.eventoService.getEventos().subscribe(<span class="fstat-no" title="function not covered" >response</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >      this.eventos = response;</span>
-<span class="cstat-no" title="statement not covered" >      this.listaCompletaDeEventos = response;</span>
-<span class="cstat-no" title="statement not covered" >      this.eventosEnProgreso = this.listaCompletaDeEventos.filter(<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >new Date(e.fechaInicio) &gt; new Date)</span></span>
-<span class="cstat-no" title="statement not covered" >      this.eventos = this.eventosEnProgreso</span>
-<span class="cstat-no" title="statement not covered" >      this.loading = false;</span>
+    this.eventoService.getEventos().subscribe(response =&gt; {
+      this.eventos = response;
+      this.listaCompletaDeEventos = response;
+      this.eventosEnProgreso = this.listaCompletaDeEventos.filter(e =&gt; new Date(e.fechaInicio) &gt; new Date)
+      this.eventos = this.eventosEnProgreso
+      this.loading = false;
     })
 &nbsp;
-    this.eventoService.getTiposEvento().subscribe(<span class="fstat-no" title="function not covered" >response</span> =&gt; {
-<span class="cstat-no" title="statement not covered" >      this.tipos = response;</span>
+    this.eventoService.getTiposEvento().subscribe(response =&gt; {
+      this.tipos = response;
     })
 &nbsp;
   }
@@ -512,6 +523,10 @@ export class EventosPage {
 <span class="cstat-no" title="statement not covered" >    this.showFilters = !this.showFilters</span>
   }
 &nbsp;
+<span class="fstat-no" title="function not covered" >  newEvent</span>() {
+<span class="cstat-no" title="statement not covered" >  this.router.navigate(['/nuevo-evento']);</span>
+  } 
+&nbsp;
 }
 &nbsp;
 &nbsp;</pre></td></tr>
@@ -520,7 +535,7 @@ export class EventosPage {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jun 24 2020 11:45:06 GMT-0300 (GMT-03:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jun 24 2020 14:18:18 GMT-0300 (GMT-03:00)
 </div>
 </div>
 <script src="..\..\..\..\prettify.js"></script>

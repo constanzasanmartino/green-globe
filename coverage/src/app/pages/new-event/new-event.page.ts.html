@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/app/pages/new-event/new-event.page.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\..\..\index.html">All files</a> / <a href="index.html">src/app/pages/new-event</a> new-event.page.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">24.66% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>18/73</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>3/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">22.54% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>16/71</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+&nbsp;
+import { AlertController, Platform } from '@ionic/angular';
+&nbsp;
+import { storage } from 'firebase';
+&nbsp;
+import { EventoService } from '../../services/evento.service';
+import { ITipoEvento } from '../../models/tipo-evento.interface';
+import { IEvento } from '../../models/evento.interface';
+&nbsp;
+@Component({
+  selector: 'app-new-event',
+  templateUrl: './new-event.page.html',
+  styleUrls: ['./new-event.page.scss'],
+})
+export class NewEventPage implements OnInit {
+&nbsp;
+  evento: IEvento = {
+    nombre: '',
+    fechaFin: '',
+    fechaInicio: '',
+    descripcion: '',
+    descripcionCorta: '',
+    tipo: null,
+    ubicacion: ''
+  }
+&nbsp;
+  tiposEvento: ITipoEvento[] = [];
+  public selectedValues: number[] = [];
+&nbsp;
+  hayFotoPortada: boolean = false;
+  portadaButtonText = 'SELECCIONAR PORTADA'
+&nbsp;
+  hayImagenes: boolean = false;
+  imagenesButtonText = 'SELECCIONAR IMÁGENES'
+&nbsp;
+  slideOpts = {
+    initialSlide: 0,
+    speed: 400
+  };
+&nbsp;
+  yourImage: any;
+&nbsp;
+  imagenes: any[] = []
+&nbsp;
+  @ViewChild('filePicker', { static: false }) filePickerRef: ElementRef&lt;HTMLInputElement&gt;;
+  @ViewChild('filePickerMultiple', { static: false }) fileMultiplePickerRef: ElementRef&lt;HTMLInputElement&gt;;
+  photo: SafeResourceUrl;
+  isDesktop: boolean;
+&nbsp;
+  constructor(private eventoService: EventoService, private alertCtrl: AlertController,
+    private router: Router) {
+&nbsp;
+    this.eventoService.getTiposEvento().subscribe(response =&gt; {
+      this.tiposEvento = response;
+    })
+&nbsp;
+  }
+&nbsp;
+  ngOnInit() { }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  getPicture</span>() {
+<span class="cstat-no" title="statement not covered" >    this.portadaButtonText = 'CAMBIAR PORTADA';</span>
+<span class="cstat-no" title="statement not covered" >    this.filePickerRef.nativeElement.click();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  onFileChoose</span>(event: Event) {
+    const file = (<span class="cstat-no" title="statement not covered" >event.target as HTMLInputElement).files[0];</span>
+    const pattern = <span class="cstat-no" title="statement not covered" >/image-*/;</span>
+    const reader = <span class="cstat-no" title="statement not covered" >new FileReader();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!file.type.match(pattern)) {</span>
+<span class="cstat-no" title="statement not covered" >      console.log('File format not supported');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    reader.onload = <span class="fstat-no" title="function not covered" >() </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.hayFotoPortada = true;</span>
+<span class="cstat-no" title="statement not covered" >      this.photo = reader.result.toString();</span>
+      let rnd = <span class="cstat-no" title="statement not covered" >(Math.random() * (9999999999)).toString();</span>
+      let img = <span class="cstat-no" title="statement not covered" >'pictures/eventos' + rnd;</span>
+      const pictures = <span class="cstat-no" title="statement not covered" >storage().ref(img);</span>
+<span class="cstat-no" title="statement not covered" >      pictures.putString(this.photo.toString(), 'data_url');</span>
+    };
+<span class="cstat-no" title="statement not covered" >    reader.readAsDataURL(file);</span>
+&nbsp;
+  }
+&nbsp;
+  
+<span class="fstat-no" title="function not covered" >  onSelectImagenes</span>() {
+<span class="cstat-no" title="statement not covered" >    this.imagenesButtonText = 'AGREGAR IMÁGEN'</span>
+<span class="cstat-no" title="statement not covered" >    this.fileMultiplePickerRef.nativeElement.click();</span>
+  }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  onFileChooseMultiple</span>(event: Event) {
+<span class="cstat-no" title="statement not covered" >    console.log((event.target as HTMLInputElement).files)</span>
+    const file = (<span class="cstat-no" title="statement not covered" >event.target as HTMLInputElement).files[0];</span>
+    const pattern = <span class="cstat-no" title="statement not covered" >/image-*/;</span>
+    const reader = <span class="cstat-no" title="statement not covered" >new FileReader();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (!file.type.match(pattern)) {</span>
+<span class="cstat-no" title="statement not covered" >      console.log('File format not supported');</span>
+<span class="cstat-no" title="statement not covered" >      return;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    console.log(this.imagenes)</span>
+<span class="cstat-no" title="statement not covered" >    reader.onload = <span class="fstat-no" title="function not covered" >() </span>=&gt; {</span>
+<span class="cstat-no" title="statement not covered" >      this.hayImagenes = true;</span>
+      let photo = <span class="cstat-no" title="statement not covered" >reader.result.toString();</span>
+<span class="cstat-no" title="statement not covered" >      this.imagenes.push(photo)</span>
+<span class="cstat-no" title="statement not covered" >      console.log(this.imagenes)</span>
+      // let rnd = (Math.random() * (9999999999)).toString();
+      // let img = 'pictures/eventos' + rnd;
+      // const pictures = storage().ref(img);
+      // pictures.putString(this.photo.toString(), 'data_url');
+      // console.log(this.photo.toString())
+    };
+<span class="cstat-no" title="statement not covered" >    reader.readAsDataURL(file);</span>
+&nbsp;
+  }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  onCreateEvent</span>() {
+<span class="cstat-no" title="statement not covered" >    console.log(this.evento)</span>
+<span class="cstat-no" title="statement not covered" >    this.evento.foto = this.photo.toString()</span>
+<span class="cstat-no" title="statement not covered" >    if( this.validarFechas(this.evento.fechaFin, this.evento.fechaInicio )) {</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.eventoService.agregarEvento(this.evento).then(<span class="fstat-no" title="function not covered" >response</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (response.id) {</span>
+<span class="cstat-no" title="statement not covered" >          console.log('evento ' + response.id + ' creado')</span>
+<span class="cstat-no" title="statement not covered" >          this.mostrarAlerta('Evento creado con exito!!!', 'Juntos podemos salvar el planeta!')</span>
+<span class="cstat-no" title="statement not covered" >          this.volver()</span>
+  
+        } else {
+<span class="cstat-no" title="statement not covered" >          this.mostrarAlerta('Error al guardar el evento!', 'Intente nuevamente')</span>
+        }
+      })
+    }
+  }
+&nbsp;
+  async <span class="fstat-no" title="function not covered" >mostrarAlerta</span>(header: string, mensaje: string) {
+    const alert = <span class="cstat-no" title="statement not covered" >await this.alertCtrl.create({</span>
+      header: header,
+      message: mensaje,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: <span class="fstat-no" title="function not covered" >(b</span>lah) =&gt; { }
+        }
+      ]
+    });
+<span class="cstat-no" title="statement not covered" >    await alert.present();</span>
+  }
+&nbsp;
+<span class="fstat-no" title="function not covered" >  validarFechas</span>(endDate, startDate) {
+    let inicio = <span class="cstat-no" title="statement not covered" >new Date(startDate);</span>
+    let fin = <span class="cstat-no" title="statement not covered" >new Date(endDate);</span>
+<span class="cstat-no" title="statement not covered" >    if (fin &lt; inicio) {</span>
+<span class="cstat-no" title="statement not covered" >      this.mostrarAlerta('Fechas Invalidas!', 'Intente nuevamente');</span>
+<span class="cstat-no" title="statement not covered" >      return false;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return true;</span>
+    }
+  }
+&nbsp;
+&nbsp;
+<span class="fstat-no" title="function not covered" >  volver</span>() {
+<span class="cstat-no" title="statement not covered" >    this.router.navigate(['/tabs/eventos']);</span>
+<span class="cstat-no" title="statement not covered" >    this.evento = {</span>
+      nombre: '',
+      fechaFin: '',
+      fechaInicio: '',
+      descripcion: '',
+      descripcionCorta: '',
+      tipo: null,
+      ubicacion: '',
+      foto: '',
+      linkContacto: '',
+      nombreContacto: '',
+      mailContacto: '',
+      celularContacto: null
+    }
+<span class="cstat-no" title="statement not covered" >    this.portadaButtonText = 'SELECCIONAR PORTADA';</span>
+<span class="cstat-no" title="statement not covered" >    this.hayFotoPortada = false;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    this.hayImagenes = false;</span>
+<span class="cstat-no" title="statement not covered" >    this.imagenesButtonText = 'SELECCIONAR IMÁGENES'</span>
+  }
+&nbsp;
+&nbsp;
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jun 24 2020 14:18:18 GMT-0300 (GMT-03:00)
+</div>
+</div>
+<script src="..\..\..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\..\..\sorter.js"></script>
+</body>
+</html>

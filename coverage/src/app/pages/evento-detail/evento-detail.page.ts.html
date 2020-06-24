@@ -149,7 +149,13 @@
 104
 105
 106
-107</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+107
+108
+109
+110
+111
+112
+113</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -212,7 +218,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -243,6 +248,13 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,7 +279,7 @@ import { EventoService } from '../../services/evento.service';
   templateUrl: './evento-detail.page.html',
   styleUrls: ['./evento-detail.page.scss'],
 })
-export class EventoDetailPage  {
+export class EventoDetailPage {
 &nbsp;
   tipos: ITipoEvento[] = [
     {
@@ -312,54 +324,60 @@ export class EventoDetailPage  {
 &nbsp;
   instagram: boolean = false;
   facebook: boolean = false;
-  
 &nbsp;
-  constructor( private route: Router, private eventoService: EventoService) {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.route.getCurrentNavigation()!=null){
-<span class="cstat-no" title="statement not covered" >      console.log('paso la pucha...');</span>
-    let evento = <span class="cstat-no" title="statement not covered" >this.route.getCurrentNavigation().extras.state;</span>
-<span class="cstat-no" title="statement not covered" >    this.evento = {</span>
-      id: evento.id,
-      nombre: evento.nombre,
-      descripcion: evento.descripcion,
-      descripcionCorta: evento.descripcionCorta,
-      fechaInicio: evento.fechaInicio,
-      fechaFin: evento.fechaFin,
-      ubicacion: evento.ubicacion,
-      foto: evento.foto,
-      tipo: evento.tipo,
-      linkContacto: evento.linkContacto,
-      mailContacto: evento.mailContacto,
-      nombreContacto: evento.nombreContacto,
-      celularContacto: evento.celularContacto
+&nbsp;
+  constructor(private route: Router, private eventoService: EventoService) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.route.getCurrentNavigation() != null) {
+      let evento = <span class="cstat-no" title="statement not covered" >this.route.getCurrentNavigation().extras.state;</span>
+<span class="cstat-no" title="statement not covered" >      this.evento = {</span>
+        id: evento.id,
+        nombre: evento.nombre,
+        descripcion: evento.descripcion,
+        descripcionCorta: evento.descripcionCorta,
+        fechaInicio: evento.fechaInicio,
+        fechaFin: evento.fechaFin,
+        ubicacion: evento.ubicacion,
+        foto: evento.foto,
+        tipo: evento.tipo,
+        linkContacto: evento.linkContacto,
+        mailContacto: evento.mailContacto,
+        nombreContacto: evento.nombreContacto,
+        celularContacto: evento.celularContacto
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (evento.linkContacto) {</span>
+<span class="cstat-no" title="statement not covered" >        if (evento.linkContacto.includes('instagram')) <span class="cstat-no" title="statement not covered" >this.instagram = true;</span></span>
+<span class="cstat-no" title="statement not covered" >        if (evento.linkContacto.includes('facebook')) <span class="cstat-no" title="statement not covered" >this.facebook = true;</span></span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.imagnesEvento = [</span>
+        {
+          id: 0,
+          urlImagen: '../assets/default.jpg'
+        }
+      ]
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.eventoService.getImagenes(evento.id).subscribe(<span class="fstat-no" title="function not covered" >response</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (response.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >          this.imagnesEvento = response;</span>
+        } else  {
+<span class="cstat-no" title="statement not covered" >          this.imagnesEvento = [</span>
+            {
+              id: 0,
+              urlImagen: this.evento.foto
+            }
+          ]
+        }
+      });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      this.eventoService.getComentarios(evento.id).subscribe(<span class="fstat-no" title="function not covered" >response</span> =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        if (response.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >          this.comentariosEvento = response</span>
+        }
+      })
     }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    if (evento.linkContacto) {</span>
-<span class="cstat-no" title="statement not covered" >      if (evento.linkContacto.includes('instagram')) <span class="cstat-no" title="statement not covered" >this.instagram = true;</span></span>
-<span class="cstat-no" title="statement not covered" >      if (evento.linkContacto.includes('facebook')) <span class="cstat-no" title="statement not covered" >this.facebook = true;</span></span>
-    }
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    this.imagnesEvento = [</span>
-      {
-        id: 0,
-        urlImagen:'../assets/default.jpg'
-      }
-    ]
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    this.eventoService.getImagenes(evento.id).subscribe(<span class="fstat-no" title="function not covered" >response</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if ( response.length &gt; 0 ) {</span>
-<span class="cstat-no" title="statement not covered" >        this.imagnesEvento = response;</span>
-      }
-    });
-&nbsp;
-<span class="cstat-no" title="statement not covered" >    this.eventoService.getComentarios(evento.id).subscribe(<span class="fstat-no" title="function not covered" >response</span> =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      if ( response.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >        this.comentariosEvento = response</span>
-      }
-    })
   }
-  }
-  
+&nbsp;
 }
 &nbsp;</pre></td></tr>
 </table></pre>
@@ -367,7 +385,7 @@ export class EventoDetailPage  {
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jun 24 2020 11:45:06 GMT-0300 (GMT-03:00)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jun 24 2020 14:18:18 GMT-0300 (GMT-03:00)
 </div>
 </div>
 <script src="..\..\..\..\prettify.js"></script>

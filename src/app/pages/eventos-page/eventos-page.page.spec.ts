@@ -11,6 +11,7 @@ import { AngularFireModule } from 'angularfire2';
 import {environment} from '../../../environments/environment';
 import { IEvento } from 'src/app/models/evento.interface';
 import { ITipoEvento } from 'src/app/models/tipo-evento.interface';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EventosPage', () => {
   let component: EventosPage;
@@ -22,7 +23,7 @@ describe('EventosPage', () => {
       declarations: [EventosPage],
       imports: [IonicModule.forRoot(),ReactiveFormsModule,BrowserModule, 
         HttpClientModule,
-        FormsModule,
+        FormsModule,RouterTestingModule,
        CommonModule,
         ComponentsModule,  AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule]
