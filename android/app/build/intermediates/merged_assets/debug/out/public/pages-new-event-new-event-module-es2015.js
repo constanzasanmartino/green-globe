@@ -28815,7 +28815,7 @@ module.exports = firebase;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\r\n    <ion-toolbar color=\"greenglobe\">\r\n        <ion-title>Nuevo Evento</ion-title>\r\n        <ion-buttons slot=\"start\">\r\n            <ion-back-button></ion-back-button>\r\n        </ion-buttons>\r\n    </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding color=\"grisClaro\">\r\n    <ion-card>\r\n        <ion-card-content>\r\n            <form #form=\"ngForm\">\r\n                <ion-list>\r\n                    <!-- Tipo -->\r\n                    <ion-item>\r\n                        <ion-label>Tipo de evento</ion-label>\r\n                        <ion-select [(ngModel)]=\"evento.tipo\" [ngModelOptions]=\"{standalone: true}\" cancel-text=\"CANCELAR\" interface=\"alert\" required>\r\n                            <ion-select-option required *ngFor=\"let tipo of tiposEvento\" [value]=\"tipo.id\">\r\n                                {{tipo.descripcion}}\r\n                            </ion-select-option>\r\n                        </ion-select>\r\n                    </ion-item>\r\n                    <!-- Nombre -->\r\n                    <ion-item>\r\n                        <ion-input class=\"nameEvento\" name=\"nombre\" placeholder=\"Nombre del evento\" [(ngModel)]=\"evento.nombre\" type=\"text\" required></ion-input>\r\n                    </ion-item>\r\n                    <!-- Foto Portada -->\r\n                    <ion-item *ngIf=\"hayFotoPortada\">\r\n                        <div class=\"imagen-container\">\r\n                            <ion-badge class=\"btn\" color=\"medium\" (click)=\"onDeletePortadaClick()\">Borrar</ion-badge>\r\n                            <ion-img [src]=\"photo\"></ion-img>\r\n                        </div>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <ion-chip (click)=\"getPicture()\">\r\n                            <ion-label> {{ portadaButtonText }}\r\n                                <ion-icon mode=\"ios\" name=\"images\"></ion-icon>\r\n                            </ion-label>\r\n                        </ion-chip>\r\n                    </ion-item>\r\n                    <input style=\"display: none;\" multiple type=\"file\" #filePicker (change)=\"onFileChoose($event)\" />\r\n\r\n                    <!-- Fecha -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"time\"></ion-icon>\r\n                        <ion-datetime name=\"fechaInicio\" [(ngModel)]=\"evento.fechaInicio\" display-format=\"DD MMM YYYY HH:mm\" placeholder=\"Fecha de inicio\" cancelText=\"Cancelar\" doneText=\"Ok\" required>\r\n                            Fecha\r\n                        </ion-datetime>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"time\"></ion-icon>\r\n                        <ion-datetime name=\"fechaFin\" [(ngModel)]=\"evento.fechaFin\" display-format=\"DD MMM YYYY HH:mm\" placeholder=\"Fecha de finalización\" cancelText=\"Cancelar\" doneText=\"Ok\" required>\r\n                            Fecha\r\n                        </ion-datetime>\r\n                    </ion-item>\r\n                    <!-- Ubicacion -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"location\"></ion-icon>\r\n                        <ion-input name=\"ubicacion\" placeholder=\"Ubicación\" [(ngModel)]=\"evento.ubicacion\" type=\"text\" required></ion-input>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <!-- Descripcion Corta -->\r\n                        <ion-icon mode=\"ios\" name=\"create\"></ion-icon>\r\n                        <ion-textarea name=\"descripcionCorta\" placeholder=\"Descripcion corta\" [(ngModel)]=\"evento.descripcionCorta\" type=\"text\" required>\r\n                        </ion-textarea>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <!-- Descripcion -->\r\n                        <ion-icon mode=\"ios\" name=\"create\"></ion-icon>\r\n                        <ion-textarea name=\"descripcion\" placeholder=\"Detalles\" [(ngModel)]=\"evento.descripcion\" type=\"text\" required>\r\n                        </ion-textarea>\r\n                    </ion-item>\r\n                    <!-- Nombre Contacto -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"person\"></ion-icon>\r\n                        <ion-input name=\"nombreContacto\" placeholder=\"Nombre de contacto\" [(ngModel)]=\"evento.nombreContacto\" type=\"text\" required></ion-input>\r\n                    </ion-item>\r\n                    <!-- Mail Contacto -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"mail\"></ion-icon>\r\n                        <ion-input name=\"mailContacto\" placeholder=\"Email de contacto\" [(ngModel)]=\"evento.mailContacto\" type=\"email\"></ion-input>\r\n                    </ion-item>\r\n                    <!-- Celular Contacto -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"call\"></ion-icon>\r\n                        <ion-input name=\"celularContacto\" placeholder=\"Celular de contacto\" [(ngModel)]=\"evento.celularContacto\" type=\"text\"></ion-input>\r\n                    </ion-item>\r\n                    <!-- Link Contacto -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"link\"></ion-icon>\r\n                        <ion-input name=\"linkContacto\" placeholder=\"Link de contacto\" [(ngModel)]=\"evento.linkContacto\" type=\"text\"></ion-input>\r\n                    </ion-item>\r\n\r\n                    <!-- Imagenes -->\r\n                    <ion-item *ngIf=\"hayImagenes\">\r\n                        <ion-slides pager=\"true\" [options]=\"slideOpts\">\r\n                            <ion-slide *ngFor=\"let i of imagenes; let ind = index;\">\r\n                                <ion-item>\r\n                                    <div class=\"imagen-container\">\r\n                                        <ion-badge class=\"btn\" color=\"medium\" (click)=\"onDeleteClick(ind)\">Borrar\r\n                                        </ion-badge>\r\n                                        <ion-img [src]=\"i.urlImagen\"></ion-img>\r\n                                    </div>\r\n                                </ion-item>\r\n                            </ion-slide>\r\n                        </ion-slides>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <ion-chip (click)=\"onSelectImagenes()\">\r\n                            <ion-label> {{ imagenesButtonText }}\r\n                                <ion-icon mode=\"ios\" name=\"images\"></ion-icon>\r\n                            </ion-label>\r\n                        </ion-chip>\r\n                    </ion-item>\r\n                    <input style=\"display: none;\" type=\"file\" name=\"images[]\" #filePickerMultiple (change)=\"onFileChooseMultiple($event)\" multiple />\r\n\r\n                </ion-list>\r\n                <ion-button *ngIf=\"!loading\" color=\"dark\" expand=\"full\" (click)=\"onCreateEvent()\" [disabled]=\"form.invalid\">\r\n                    <ion-icon slot=\"start\" name=\"create\"> </ion-icon>Crear\r\n                </ion-button>\r\n                <ion-progress-bar *ngIf=\"loading\" color=\"light\" type=\"indeterminate\"></ion-progress-bar>\r\n                <br>\r\n            </form>\r\n\r\n        </ion-card-content>\r\n    </ion-card>\r\n\r\n\r\n\r\n</ion-content>");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\r\n    <ion-toolbar color=\"greenglobe\">\r\n        <ion-title>Nuevo Evento</ion-title>\r\n        <ion-buttons slot=\"start\">\r\n            <ion-back-button></ion-back-button>\r\n        </ion-buttons>\r\n    </ion-toolbar>\r\n</ion-header>\r\n\r\n<ion-content padding color=\"grisClaro\">\r\n    <ion-card>\r\n        <ion-card-content>\r\n            <form #form=\"ngForm\">\r\n                <ion-list>\r\n                    <!-- Tipo -->\r\n                    <ion-item>\r\n                        <ion-label>Tipo de evento</ion-label>\r\n                        <ion-select [(ngModel)]=\"evento.tipo\" [ngModelOptions]=\"{standalone: true}\" cancel-text=\"CANCELAR\" interface=\"alert\" required>\r\n                            <ion-select-option required *ngFor=\"let tipo of tiposEvento\" [value]=\"tipo.id\">\r\n                                {{tipo.descripcion}}\r\n                            </ion-select-option>\r\n                        </ion-select>\r\n                    </ion-item>\r\n                    <!-- Nombre -->\r\n                    <ion-item>\r\n                        <ion-input class=\"nameEvento\" name=\"nombre\" placeholder=\"Nombre del evento\" [(ngModel)]=\"evento.nombre\" type=\"text\" required></ion-input>\r\n                    </ion-item>\r\n                    <!-- Foto Portada -->\r\n                    <ion-item *ngIf=\"hayFotoPortada\">\r\n                        <div class=\"imagen-container\">\r\n                            <ion-badge class=\"btn\" color=\"medium\" (click)=\"onDeletePortadaClick()\">Borrar</ion-badge>\r\n                            <ion-img [src]=\"photo\"></ion-img>\r\n                        </div>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <ion-chip (click)=\"getPicture()\">\r\n                            <ion-label> {{ portadaButtonText }}\r\n                                <ion-icon mode=\"ios\" name=\"images\"></ion-icon>\r\n                            </ion-label>\r\n                        </ion-chip>\r\n                    </ion-item>\r\n                    <input style=\"display: none;\" multiple type=\"file\" #filePicker (change)=\"onFileChoose($event)\" />\r\n\r\n                    <!-- Fecha -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"time\"></ion-icon>\r\n                        <ion-datetime name=\"fechaInicio\" [(ngModel)]=\"evento.fechaInicio\" display-format=\"DD MMM YYYY HH:mm\" placeholder=\"Fecha de inicio\" cancelText=\"Cancelar\" doneText=\"Ok\" required>\r\n                            Fecha\r\n                        </ion-datetime>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"time\"></ion-icon>\r\n                        <ion-datetime name=\"fechaFin\" [(ngModel)]=\"evento.fechaFin\" display-format=\"DD MMM YYYY HH:mm\" placeholder=\"Fecha de finalización\" cancelText=\"Cancelar\" doneText=\"Ok\" required>\r\n                            Fecha\r\n                        </ion-datetime>\r\n                    </ion-item>\r\n                    <!-- Ubicacion -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"location\"></ion-icon>\r\n                        <ion-input name=\"ubicacion\" placeholder=\"Ubicación\" [(ngModel)]=\"evento.ubicacion\" type=\"text\" required></ion-input>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <!-- Descripcion Corta -->\r\n                        <ion-icon mode=\"ios\" name=\"create\"></ion-icon>\r\n                        <ion-textarea name=\"descripcionCorta\" placeholder=\"Descripcion corta\" [(ngModel)]=\"evento.descripcionCorta\" type=\"text\" required>\r\n                        </ion-textarea>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <!-- Descripcion -->\r\n                        <ion-icon mode=\"ios\" name=\"create\"></ion-icon>\r\n                        <ion-textarea name=\"descripcion\" placeholder=\"Detalles\" [(ngModel)]=\"evento.descripcion\" type=\"text\" required>\r\n                        </ion-textarea>\r\n                    </ion-item>\r\n                    <!-- Nombre Contacto -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"person\"></ion-icon>\r\n                        <ion-input name=\"nombreContacto\" placeholder=\"Nombre de contacto\" [(ngModel)]=\"evento.nombreContacto\" type=\"text\" required></ion-input>\r\n                    </ion-item>\r\n                    <!-- Mail Contacto -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"mail\"></ion-icon>\r\n                        <ion-input name=\"mailContacto\" placeholder=\"Email de contacto\" [(ngModel)]=\"evento.mailContacto\" type=\"email\" pattern=\"^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$\"></ion-input>\r\n                    </ion-item>\r\n                    <!-- Celular Contacto -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"call\"></ion-icon>\r\n                        <ion-input type=\"number\" name=\"celularContacto\" placeholder=\"Celular de contacto\" [(ngModel)]=\"evento.celularContacto\"></ion-input>\r\n                    </ion-item>\r\n                    <!-- Link Contacto -->\r\n                    <ion-item>\r\n                        <ion-icon mode=\"ios\" name=\"link\"></ion-icon>\r\n                        <ion-input name=\"linkContacto\" placeholder=\"Link de contacto\" [(ngModel)]=\"evento.linkContacto\" type=\"text\"></ion-input>\r\n                    </ion-item>\r\n\r\n                    <!-- Imagenes -->\r\n                    <ion-item *ngIf=\"hayImagenes\">\r\n                        <ion-slides pager=\"true\" [options]=\"slideOpts\">\r\n                            <ion-slide *ngFor=\"let i of imagenes; let ind = index;\">\r\n                                <ion-item>\r\n                                    <div class=\"imagen-container\">\r\n                                        <ion-badge class=\"btn\" color=\"medium\" (click)=\"onDeleteClick(ind)\">Borrar\r\n                                        </ion-badge>\r\n                                        <ion-img [src]=\"i.urlImagen\"></ion-img>\r\n                                    </div>\r\n                                </ion-item>\r\n                            </ion-slide>\r\n                        </ion-slides>\r\n                    </ion-item>\r\n                    <ion-item>\r\n                        <ion-chip (click)=\"onSelectImagenes()\">\r\n                            <ion-label> {{ imagenesButtonText }}\r\n                                <ion-icon mode=\"ios\" name=\"images\"></ion-icon>\r\n                            </ion-label>\r\n                        </ion-chip>\r\n                    </ion-item>\r\n                    <input style=\"display: none;\" type=\"file\" name=\"images[]\" #filePickerMultiple (change)=\"onFileChooseMultiple($event)\" multiple />\r\n\r\n                </ion-list>\r\n                <ion-button *ngIf=\"!loading\" color=\"dark\" expand=\"full\" (click)=\"onCreateEvent()\" [disabled]=\"form.invalid\">\r\n                    <ion-icon slot=\"start\" name=\"create\"> </ion-icon>Crear\r\n                </ion-button>\r\n                <ion-progress-bar *ngIf=\"loading\" color=\"light\" type=\"indeterminate\"></ion-progress-bar>\r\n                <br>\r\n            </form>\r\n\r\n        </ion-card-content>\r\n    </ion-card>\r\n\r\n\r\n\r\n</ion-content>");
 
 /***/ }),
 
@@ -28925,7 +28925,7 @@ let NewEventPage = class NewEventPage {
         this.hayFotoPortada = false;
         this.portadaButtonText = 'SELECCIONAR PORTADA';
         this.hayImagenes = false;
-        this.imagenesButtonText = 'SELECCIONAR IMÁGENES';
+        this.imagenesButtonText = 'AGREGAR IMÁGENES';
         this.slideOpts = {
             initialSlide: 0,
             speed: 400
@@ -28951,12 +28951,15 @@ let NewEventPage = class NewEventPage {
         }
         reader.onload = () => {
             this.hayFotoPortada = true;
-            console.log(this.hayFotoPortada);
-            this.photo = reader.result.toString();
+            let photo = reader.result.toString();
             let rnd = (Math.random() * (9999999999)).toString();
             let img = 'pictures/eventos' + rnd;
             const pictures = Object(firebase__WEBPACK_IMPORTED_MODULE_4__["storage"])().ref(img);
-            pictures.putString(this.photo.toString(), 'data_url');
+            pictures.putString(photo.toString(), 'data_url').then(a => {
+                let url = pictures.getDownloadURL().then(a => {
+                    this.photo = a;
+                });
+            });
         };
         reader.readAsDataURL(file);
     }
@@ -28972,13 +28975,15 @@ let NewEventPage = class NewEventPage {
             reader.onload = () => {
                 this.hayImagenes = true;
                 let photo = reader.result.toString();
-                // let rnd = (Math.random() * (9999999999)).toString();
-                // let img = 'pictures/eventos' + rnd;
-                // const pictures = storage().ref(img);
-                // pictures.putString(photo.toString(), 'data_url');
-                this.imagenes.push({
-                    id: i,
-                    urlImagen: photo
+                let rnd = (Math.random() * (9999999999)).toString();
+                let img = 'pictures/eventos' + rnd;
+                const pictures = Object(firebase__WEBPACK_IMPORTED_MODULE_4__["storage"])().ref(img);
+                pictures.putString(photo.toString(), 'data_url').then(resp => {
+                    let url = pictures.getDownloadURL().then(a => {
+                        this.imagenes.push({
+                            urlImagen: a
+                        });
+                    });
                 });
             };
             reader.readAsDataURL(file);
@@ -28986,26 +28991,41 @@ let NewEventPage = class NewEventPage {
     }
     onCreateEvent() {
         this.loading = true;
-        console.log(this.evento);
-        if (this.evento.foto) {
+        this.evento.creadoPorRobot = false;
+        if (this.photo) {
             this.evento.foto = this.photo.toString();
         }
-        if (this.validarFechas(this.evento.fechaFin, this.evento.fechaInicio)) {
-            this.eventoService.agregarEvento(this.evento).then(response => {
-                if (response.id) {
-                    if (this.imagenes.length > 0) {
-                        // this.eventoService.agregarFotos(this.imagenes, response.id)
-                    }
-                    console.log('evento ' + response.id + ' creado');
-                    this.loading = false;
-                    this.mostrarAlerta('Evento creado con exito!!!', 'Juntos podemos salvar el planeta!');
-                    this.volver();
+        if (this.evento.linkContacto) {
+            if (!this.evento.linkContacto.includes('https://www.')) {
+                if (this.evento.linkContacto.includes('www.')) {
+                    this.evento.linkContacto = 'https://' + this.evento.linkContacto;
                 }
                 else {
-                    this.loading = false;
-                    this.mostrarAlerta('Error al guardar el evento!', 'Intente nuevamente');
+                    this.evento.linkContacto = 'https://www.' + this.evento.linkContacto;
                 }
-            });
+            }
+        }
+        if (this.evento.tipo) {
+            if (this.validarFechas(this.evento.fechaFin, this.evento.fechaInicio)) {
+                this.eventoService.agregarEvento(this.evento).then(response => {
+                    if (response.id) {
+                        if (this.imagenes.length > 0) {
+                            this.eventoService.agregarFotos(this.imagenes, response.id);
+                        }
+                        this.loading = false;
+                        this.mostrarAlerta('Evento creado con exito!!!', 'Juntos podemos salvar el planeta!');
+                        this.volver();
+                    }
+                    else {
+                        this.loading = false;
+                        this.mostrarAlerta('Error al guardar el evento!', 'Intente nuevamente');
+                    }
+                });
+            }
+        }
+        else {
+            this.loading = false;
+            this.mostrarAlerta('Debe ingresar tipo!', 'Intente nuevamente');
         }
     }
     mostrarAlerta(header, mensaje) {
@@ -29059,7 +29079,7 @@ let NewEventPage = class NewEventPage {
         this.imagenes.splice(ind, 1);
         if (this.imagenes.length == 0) {
             this.hayImagenes = false;
-            this.imagenesButtonText = 'SELECCIONAR IMÁGENES';
+            this.imagenesButtonText = 'AGREGAR IMÁGENES';
         }
     }
     onDeletePortadaClick() {
