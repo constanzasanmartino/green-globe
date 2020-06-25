@@ -15,7 +15,7 @@ before_install:
  - chmod +x  gradlew  
    
 script:
-    - gradlew assembleDebug  --stacktrace
+    - ./gradlew assembleDebug  --stacktrace
 notifications:
   email:
     - rodriguezlucasjavier1984@gmail.com
