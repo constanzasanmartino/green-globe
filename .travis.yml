@@ -25,7 +25,7 @@ before_install:
 install:
   - nvm install 12.16.2 
   - npm install 
-  - npm install  @angular/cli
+  - npm install -g  @angular/cli
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -41,8 +41,6 @@ before_script:
   - chmod +x  ./android/gradlew 
      
 script:
-  - ng test --watch=false --browsers=ChromeHeadless --code-coverage --reporters=coverage-istanbul
-  - ng e2e --protractor-config='e2e/ci.protractor.conf.js'  
   - ng build --prod=false
   - npx cap copy
   - npx cap copy android
