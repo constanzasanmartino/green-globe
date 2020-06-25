@@ -52,7 +52,7 @@ after_success:
 
 deploy:
   provider: releases
-  api-key: $GITHUB_API_KEY
+  api-key: $GITHUB_TOKEN
   file: $TRAVIS_BUILD_DIR/android/app/build/outputs/apk/debug/app-debug.apk
   skip_cleanup: true
   name: dev-build-$TRAVIS_TAG
