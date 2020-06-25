@@ -38,7 +38,6 @@ before_script:
 
    
 script:
-    - ./gradlew clean
     - ./gradlew assembleDebug  --stacktrace
 
 notifications:
