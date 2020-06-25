@@ -24,9 +24,7 @@ before_install:
 
 install:
   - nvm install 12.16.2 
-  - npm install -g @capacitor/core @capacitor/cli
-  - npm install -g firebase-tools
-  - npm install -g @angular/cli
+  - npm install -g 
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
