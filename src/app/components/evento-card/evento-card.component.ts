@@ -51,6 +51,8 @@ export class EventoCardComponent implements OnInit {
   ngOnInit() {
     if(this.evento.foto) {
       this.imagenEvento = this.evento.foto;
+    } else {
+      this.evento.foto = this.imagenEvento
     }
   }
 
