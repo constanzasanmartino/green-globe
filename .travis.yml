@@ -1,22 +1,42 @@
 #.travis.yml
-language: node_js
-node_js:
-  - "12.16.2"
-
-before_script:
-  - npm install -g firebase-tools
-  - npm install -g @angular/cli
+matrix:
+  include:
+ 
+    - language: node_js
+        node_js:
+          - "12.16.2"
+    
+        before_script:
+          - npm install -g firebase-tools
+          - npm install -g @angular/cli
   
-script:
-  - ng test --watch=false --browsers=ChromeHeadless --code-coverage --reporters=coverage-istanbul
-  - ng e2e --protractor-config='e2e/ci.protractor.conf.js'  
-  - ng build --prod=false
-  - npx cap copy
-  - npx cap copy android
+        script:
+          - ng test --watch=false --browsers=ChromeHeadless --code-coverage --reporters=coverage-istanbul
+          - ng e2e --protractor-config='e2e/ci.protractor.conf.js'  
+          - ng build --prod=false
+          - npx cap copy
+          - npx cap copy android
+    
+        after_success:
+          - firebase deploy --token $FIREBASE_TOKEN
 
-
-after_success:
-  - firebase deploy --token $FIREBASE_TOKEN
+    - language: android
+        jdk: oraclejdk8
+        android:
+          components:
+            - platform-tools
+            - tools
+            - build-tools-25.0.3
+            - android-25
+            - extra-google-google_play_services
+            - extra-google-m2repository
+            - extra-android-m2repository
+            - addon-google_apis-google-19
+        before_install:
+          - yes | sdkmanager "platforms;android-25"
+        script:
+          - ./gradlew assembleDebug   
+    
 
 
 notifications:
