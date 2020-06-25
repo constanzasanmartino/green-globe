@@ -15,7 +15,7 @@ android:
 sudo: required
 
 before_install:
- - chmod +x gradlew      
+ - chmod +x ./android/gradlew      
 script:
     - ./android/gradlew assembleDebug   
 notifications:
