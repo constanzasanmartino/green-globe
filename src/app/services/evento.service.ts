@@ -89,7 +89,7 @@ export class EventoService {
     return this.eventosCollection.add(evento);
   }
 
-  agregarFotos(imageArray: IImagenEvento[], id: string ) {
+  agregarFotos(imageArray: any[], id: string ) {
       this.imagenEventosCollection = this.db.collection<IImagenEvento>('eventos/' + id + '/imagenes');
       imageArray.forEach(image => {
         return this.imagenEventosCollection.add(image)
