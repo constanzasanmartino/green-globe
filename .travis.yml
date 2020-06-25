@@ -23,10 +23,10 @@ before_install:
   - yes | sdkmanager "build-tools;28.0.3"
 
 install:
-  - nvm install 12.16.2
-  - npm install 
+  - nvm install 12.16.2 
+  - npm install -g @capacitor/core @capacitor/cli
   - npm install -g firebase-tools
-  - npm install -g @angular/cli@8.3.23
+  - npm install -g @angular/cli
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
