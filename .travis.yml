@@ -33,12 +33,12 @@ cache:
   - $HOME/.android/build-cache
 
 before_script:
-- sudo apt-get update
-- sudo apt-get install nodejs
-- sudo apt-get install npm
- - npm install 
- - cd android
- - chmod +x  gradlew  
+  - sudo apt-get update
+  - sudo apt-get install nodejs
+  - sudo apt-get install npm
+  - npm install 
+  - cd android
+  - chmod +x  gradlew  
 
    
 script:
