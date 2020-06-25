@@ -191,6 +191,7 @@ export class NewEventPage implements OnInit {
     let fin = new Date(endDate);
     if (fin < inicio) {
       this.mostrarAlerta('Fechas Invalidas!', 'Intente nuevamente');
+      this.loading = false;
       return false;
     } else {
       return true;
