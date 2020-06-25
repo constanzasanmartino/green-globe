@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { DatePipe } from '@angular/common';
 
 import { AlertController } from '@ionic/angular';
 
@@ -47,12 +48,17 @@ export class NewEventPage implements OnInit {
 
   loading: boolean = false;
 
+  fechaHoy;
+
   @ViewChild('filePicker', { static: false }) filePickerRef: ElementRef<HTMLInputElement>;
   @ViewChild('filePickerMultiple', { static: false }) fileMultiplePickerRef: ElementRef<HTMLInputElement>;
   photo: SafeResourceUrl;
 
   constructor(private eventoService: EventoService, private alertCtrl: AlertController,
-    private router: Router) {
+    private router: Router, private datePipe: DatePipe) {
+
+      this.fechaHoy = this.datePipe.transform(new Date(), 'yyyy-MM-dd')
+      console.log(this.fechaHoy)
 
     this.eventoService.getTiposEvento().subscribe(response => {
       this.tiposEvento = response;
@@ -189,7 +195,7 @@ export class NewEventPage implements OnInit {
   validarFechas(endDate, startDate) {
     let inicio = new Date(startDate);
     let fin = new Date(endDate);
-    if (fin < inicio) {
+    if (fin < inicio || inicio < new Date() || fin < new Date()) {
       this.mostrarAlerta('Fechas Invalidas!', 'Intente nuevamente');
       this.loading = false;
       return false;

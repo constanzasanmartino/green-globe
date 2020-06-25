@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import {AngularFireModule}  from 'angularfire2';
 import {environment} from '../environments/environment';
 import {AngularFirestoreModule}  from 'angularfire2/firestore';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [ AppComponent],
@@ -29,6 +30,7 @@ import {AngularFirestoreModule}  from 'angularfire2/firestore';
    providers: [
     StatusBar,
     SplashScreen,
+    DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

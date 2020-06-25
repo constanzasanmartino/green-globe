@@ -44,13 +44,13 @@
                     <!-- Fecha -->
                     <ion-item>
                         <ion-icon mode="ios" name="time"></ion-icon>
-                        <ion-datetime name="fechaInicio" [(ngModel)]="evento.fechaInicio" display-format="DD MMM YYYY HH:mm" placeholder="Fecha de inicio" cancelText="Cancelar" doneText="Ok" required>
+                        <ion-datetime name="fechaInicio" [min]="fechaHoy" [(ngModel)]="evento.fechaInicio" display-format="DD MMM YYYY HH:mm" placeholder="Fecha de inicio" cancelText="Cancelar" doneText="Ok" required>
                             Fecha
                         </ion-datetime>
                     </ion-item>
                     <ion-item>
                         <ion-icon mode="ios" name="time"></ion-icon>
-                        <ion-datetime name="fechaFin" [(ngModel)]="evento.fechaFin" display-format="DD MMM YYYY HH:mm" placeholder="Fecha de finalización" cancelText="Cancelar" doneText="Ok" required>
+                        <ion-datetime name="fechaFin" [min]="fechaHoy" [(ngModel)]="evento.fechaFin" display-format="DD MMM YYYY HH:mm" placeholder="Fecha de finalización" cancelText="Cancelar" doneText="Ok" required>
                             Fecha
                         </ion-datetime>
                     </ion-item>
