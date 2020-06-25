@@ -14,7 +14,7 @@ android:
 before_install:
  - cd android
  - chmod +x  gradlew  
- - yes | ./sdkmanager --update
+ - $ yes | sdkmanager --update
    
 script:
     - ./gradlew clean
