@@ -11,6 +11,9 @@ script:
   - ng test --watch=false --browsers=ChromeHeadless --code-coverage --reporters=coverage-istanbul
   - ng e2e --protractor-config='e2e/ci.protractor.conf.js'  
   - ng build --prod=false
+  - npx cap copy
+  - npx cap copy android
+
 
 after_success:
   - firebase deploy --token $FIREBASE_TOKEN
