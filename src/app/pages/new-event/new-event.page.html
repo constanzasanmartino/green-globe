@@ -79,12 +79,12 @@
                     <!-- Mail Contacto -->
                     <ion-item>
                         <ion-icon mode="ios" name="mail"></ion-icon>
-                        <ion-input name="mailContacto" placeholder="Email de contacto" [(ngModel)]="evento.mailContacto" type="email"></ion-input>
+                        <ion-input name="mailContacto" placeholder="Email de contacto" [(ngModel)]="evento.mailContacto" type="email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"></ion-input>
                     </ion-item>
                     <!-- Celular Contacto -->
                     <ion-item>
                         <ion-icon mode="ios" name="call"></ion-icon>
-                        <ion-input name="celularContacto" placeholder="Celular de contacto" [(ngModel)]="evento.celularContacto" type="text"></ion-input>
+                        <ion-input type="number" name="celularContacto" placeholder="Celular de contacto" [(ngModel)]="evento.celularContacto"></ion-input>
                     </ion-item>
                     <!-- Link Contacto -->
                     <ion-item>

@@ -9,7 +9,6 @@ import { storage } from 'firebase';
 import { EventoService } from '../../services/evento.service';
 import { ITipoEvento } from '../../models/tipo-evento.interface';
 import { IEvento } from '../../models/evento.interface';
-import { IImagenEvento } from '../../models/imagenes-evento.interface';
 
 @Component({
   selector: 'app-new-event',
@@ -35,7 +34,7 @@ export class NewEventPage implements OnInit {
   portadaButtonText = 'SELECCIONAR PORTADA'
 
   hayImagenes: boolean = false;
-  imagenesButtonText = 'SELECCIONAR IMÁGENES'
+  imagenesButtonText = 'AGREGAR IMÁGENES'
 
   slideOpts = {
     initialSlide: 0,
@@ -44,7 +43,7 @@ export class NewEventPage implements OnInit {
 
   yourImage: any;
 
-  imagenes: IImagenEvento[] = []
+  imagenes: any[] = []
 
   loading: boolean = false;
 
@@ -80,12 +79,16 @@ export class NewEventPage implements OnInit {
 
     reader.onload = () => {
       this.hayFotoPortada = true;
-      console.log(this.hayFotoPortada)
-      this.photo = reader.result.toString();
+      let photo = reader.result.toString();
       let rnd = (Math.random() * (9999999999)).toString();
       let img = 'pictures/eventos' + rnd;
       const pictures = storage().ref(img);
-      pictures.putString(this.photo.toString(), 'data_url');
+      pictures.putString(photo.toString(), 'data_url').then(a => {
+
+        let url = pictures.getDownloadURL().then( a => {
+          this.photo = a
+        });
+      });
     };
     reader.readAsDataURL(file);
 
@@ -105,17 +108,21 @@ export class NewEventPage implements OnInit {
       let file = files[i];
       let reader = new FileReader();
       reader.onload = () => {
+
         this.hayImagenes = true;
         let photo = reader.result.toString();
-        // let rnd = (Math.random() * (9999999999)).toString();
-        // let img = 'pictures/eventos' + rnd;
-        // const pictures = storage().ref(img);
-        // pictures.putString(photo.toString(), 'data_url');
-        this.imagenes.push(
-          {
-            id: i,
-            urlImagen: photo
-          })
+        let rnd = (Math.random() * (9999999999)).toString();
+        let img = 'pictures/eventos' + rnd;
+        const pictures = storage().ref(img);
+        pictures.putString(photo.toString(), 'data_url').then( resp => {
+          let url = pictures.getDownloadURL().then( a => {
+            this.imagenes.push(
+              {
+                urlImagen: a
+              })
+          });
+
+        });
       }
       reader.readAsDataURL(file);
     }
@@ -124,28 +131,34 @@ export class NewEventPage implements OnInit {
 
   onCreateEvent() {
     this.loading = true;
-    console.log(this.evento)
-    if (this.evento.foto) {
+    this.evento.creadoPorRobot = false;
+    if (this.photo) {
       this.evento.foto = this.photo.toString()
     }
-    if (this.validarFechas(this.evento.fechaFin, this.evento.fechaInicio)) {
 
-      this.eventoService.agregarEvento(this.evento).then(response => {
-        if (response.id) {
-          if (this.imagenes.length > 0) {
-            // this.eventoService.agregarFotos(this.imagenes, response.id)
-          }
-          console.log('evento ' + response.id + ' creado')
-          this.loading = false;
-          this.mostrarAlerta('Evento creado con exito!!!', 'Juntos podemos salvar el planeta!')
-          this.volver()
+    if (this.evento.tipo) {
+        if (this.validarFechas(this.evento.fechaFin, this.evento.fechaInicio)) {
 
-        } else {
-          this.loading = false;
-          this.mostrarAlerta('Error al guardar el evento!', 'Intente nuevamente')
+          this.eventoService.agregarEvento(this.evento).then(response => {
+            if (response.id) {
+              if (this.imagenes.length > 0) {
+                this.eventoService.agregarFotos(this.imagenes, response.id)
+              }
+              this.loading = false;
+              this.mostrarAlerta('Evento creado con exito!!!', 'Juntos podemos salvar el planeta!')
+              this.volver()
+    
+            } else {
+              this.loading = false;
+              this.mostrarAlerta('Error al guardar el evento!', 'Intente nuevamente')
+            }
+          })
         }
-      })
+      } else {
+        this.loading = false;
+        this.mostrarAlerta('Debe ingresar tipo!', 'Intente nuevamente')
     }
+   
   }
 
   async mostrarAlerta(header: string, mensaje: string) {
@@ -172,7 +185,6 @@ export class NewEventPage implements OnInit {
       return true;
     }
   }
-
 
   volver() {
     this.router.navigate(['/tabs/eventos']);
@@ -201,7 +213,7 @@ export class NewEventPage implements OnInit {
     this.imagenes.splice(ind, 1)
     if (this.imagenes.length == 0) {
       this.hayImagenes = false;
-      this.imagenesButtonText = 'SELECCIONAR IMÁGENES'
+      this.imagenesButtonText = 'AGREGAR IMÁGENES'
     }
   }
 

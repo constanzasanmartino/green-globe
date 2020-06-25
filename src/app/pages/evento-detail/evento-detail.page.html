@@ -35,7 +35,7 @@
             <br>
             <br>
             <ion-card-subtitle> <b class="b-size">Contacto</b> </ion-card-subtitle>
-            <div *ngIf="evento.linkContacto || evento.celularContacto ">
+            <div *ngIf=" evento.nombreContacto || evento.linkContacto || evento.celularContacto ">
                 <div>
                     {{ evento.nombreContacto }}
                 </div>
@@ -55,8 +55,8 @@
 
     </ion-card>
     <div *ngFor="let comentario of comentariosEvento">
-        <app-comentario-card  [comentarioEvento]="comentario"></app-comentario-card>
+        <app-comentario-card [comentarioEvento]="comentario"></app-comentario-card>
     </div>
-    
+
 
 </ion-content>

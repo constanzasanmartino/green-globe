@@ -11,6 +11,7 @@ export interface IEvento {
     linkContacto?: string,
     nombreContacto?: string,
     mailContacto?: string,
+    creadoPorRobot?: boolean,
     celularContacto?: string[]
 } 
 
