@@ -22,6 +22,12 @@ before_install:
   - yes | sdkmanager "platforms;android-28"
   - yes | sdkmanager "build-tools;28.0.3"
 
+install:
+  - nvm install 12.16.2
+  - npm install 
+  - npm install -g firebase-tools
+  - npm install -g @angular/cli
+
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -33,16 +39,34 @@ cache:
   - $HOME/.android/build-cache
 
 before_script:
-  - nvm install 12.16.2
-  - npm install 
-  - cd android
-  - chmod +x  gradlew 
-  
-
-   
+  - chmod +x  ./gradlew 
+     
 script:
-   - ./gradlew assembleDebug  --stacktrace
+  - ng test --watch=false --browsers=ChromeHeadless --code-coverage --reporters=coverage-istanbul
+  - ng e2e --protractor-config='e2e/ci.protractor.conf.js'  
+  - ng build --prod=false
+  - npx cap copy
+  - npx cap copy android
+  - cd android
+  - ./gradlew assembleDebug  --stacktrace
 
+after_success:
+  - ../firebase deploy --token $FIREBASE_TOKEN
+
+before_deploy:
+  - export APP_VERSION=$(./gradlew :app:printVersionName)
+
+deploy:
+  - provider: releases
+    api_key: "$GITHUB_TOKEN"
+    file: app/build/outputs/apk/release/*
+    file_glob: true
+    skip_cleanup: true
+    overwrite: true
+    name: "$APP_VERSION"
+    tag_name: "$APP_VERSION"
+    on:
+        branch: master
 
 notifications:
   email:
