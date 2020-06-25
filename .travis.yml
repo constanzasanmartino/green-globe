@@ -11,9 +11,13 @@ android:
             - extra-google-m2repository
             - extra-android-m2repository
             - addon-google_apis-google-19
-       
+
+sudo: required
+
+before_install:
+ - chmod +x gradlew      
 script:
-    - sudo  ./android/gradlew assembleDebug   
+    - ./android/gradlew assembleDebug   
 notifications:
   email:
     - rodriguezlucasjavier1984@gmail.com
