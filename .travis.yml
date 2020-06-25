@@ -35,7 +35,7 @@ matrix:
         before_install:
           - yes | sdkmanager "platforms;android-25"
         script:
-          - ./gradlew assembleDebug   
+          - ./android/gradlew assembleDebug   
     
 
 
