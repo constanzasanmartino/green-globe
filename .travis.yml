@@ -38,12 +38,19 @@ before_script:
   - source ~/.profile
   - nvm install 12.16.2
   - npm install 
-  - cd android
-  - chmod +x  gradlew  
+  
 
    
 script:
-    - ./gradlew assembleDebug  --stacktrace
+  - ng test --watch=false --browsers=ChromeHeadless --code-coverage --reporters=coverage-istanbul
+  - ng e2e --protractor-config='e2e/ci.protractor.conf.js'  
+  - ng build --prod=false
+  - npx cap copy
+  - npx cap copy android
+  - cd android
+  - chmod +x  gradlew 
+  - ./gradlew assembleDebug  --stacktrace
+
 
 notifications:
   email:
