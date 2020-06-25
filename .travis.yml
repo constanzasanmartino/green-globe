@@ -26,7 +26,7 @@ install:
   - nvm install 12.16.2
   - npm install 
   - npm install -g firebase-tools
-  - npm install -g @angular/cli
+  - npm install -g @angular/cli@8.3.23
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
