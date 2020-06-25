@@ -136,6 +136,17 @@ export class NewEventPage implements OnInit {
       this.evento.foto = this.photo.toString()
     }
 
+    if (this.evento.linkContacto) {
+      if(!this.evento.linkContacto.includes('https://www.')) {
+        if (this.evento.linkContacto.includes('www.')) {
+          this.evento.linkContacto = 'https://' + this.evento.linkContacto
+        } else {
+          this.evento.linkContacto = 'https://www.' + this.evento.linkContacto
+        }
+      }
+    }
+
+
     if (this.evento.tipo) {
         if (this.validarFechas(this.evento.fechaFin, this.evento.fechaInicio)) {
 
