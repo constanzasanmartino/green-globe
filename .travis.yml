@@ -13,7 +13,7 @@ android:
             - addon-google_apis-google-19
        
 script:
-    - ./android/gradlew assembleDebug   
+    - sudo  ./android/gradlew assembleDebug   
 notifications:
   email:
     - rodriguezlucasjavier1984@gmail.com
