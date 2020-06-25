@@ -10,11 +10,11 @@ android:
             - extra-google-m2repository
             - extra-android-m2repository
 
-sudo: true
 
 before_install:
  - cd android
  - chmod +x  gradlew  
+ - yes | sdkmanager --licenses
    
 script:
     - ./gradlew clean
