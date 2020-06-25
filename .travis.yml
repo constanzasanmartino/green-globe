@@ -38,6 +38,7 @@ before_script:
   - source ~/.profile
   - nvm install 12.16.2
   - npm install 
+  - npm install ng-common
   
 
    
