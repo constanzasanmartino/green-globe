@@ -11,10 +11,11 @@ android:
 sudo: true
 
 before_install:
- - chmod +x ./android/gradlew  
+ - cd android
+ - chmod +x  gradlew  
    
 script:
-    - ./android/gradlew assembleDebug  --stacktrace
+    - gradlew assembleDebug  --stacktrace
 notifications:
   email:
     - rodriguezlucasjavier1984@gmail.com
