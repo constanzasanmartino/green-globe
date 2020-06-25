@@ -13,7 +13,7 @@ sudo: true
 before_install:
  - chmod +x ./android/gradlew      
 script:
-    - ./android/gradlew assembleDebug   
+    - ./android/gradlew assembleDebug  --stacktrace
 notifications:
   email:
     - rodriguezlucasjavier1984@gmail.com
