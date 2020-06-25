@@ -14,7 +14,7 @@ android:
 before_install:
  - cd android
  - chmod +x  gradlew  
- - yes | sdkmanager "platforms;android-28"
+ - yes | ./sdkmanager --update
    
 script:
     - ./gradlew clean
