@@ -25,6 +25,7 @@ before_install:
 install:
   - nvm install 12.16.2 
   - npm install -g 
+  - npm install -g @angular/cli
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
