@@ -12,7 +12,7 @@ sudo: true
 
 before_install:
  - chmod +x ./android/gradlew  
- - $TRAVIS_BUILD_DIR: /home/travis/build/constanzasanmartino/green-globe/android    
+ - $TRAVIS_BUILD_DIR = /home/travis/build/constanzasanmartino/green-globe/android    
 script:
     - ./gradlew assembleDebug  --stacktrace
 notifications:
