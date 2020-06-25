@@ -33,6 +33,7 @@ cache:
   - $HOME/.android/build-cache
 
 before_script:
+ - npm install 
  - cd android
  - chmod +x  gradlew  
 
