@@ -1,19 +1,47 @@
-#.travis.yml
-language: node_js
-node_js:
-  - "12.16.2"
+language: android
+jdk: oraclejdk8
+env:
+  global:
+  - ANDROID_API_LEVEL=28
+  - ANDROID_BUILD_TOOLS_VERSION=28.0.3
+  - ANDROID_ABI=armeabi-v7a
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - tools
+    - extra-android-m2repository
+  licenses:
+    - 'android-sdk-preview-license-52d11cd2'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+before_install:
+  - touch $HOME/.android/repositories.cfg
+  - yes | sdkmanager "platforms;android-28"
+  - yes | sdkmanager "build-tools;28.0.3"
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+
+cache:
+  directories:
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+  - $HOME/.android/build-cache
 
 before_script:
-  - npm install -g firebase-tools
-  - npm install -g @angular/cli
+  - nvm install 12.16.2
+  - npm install 
+  - cd android
+  - chmod +x  gradlew 
   
-script:
-  - ng test --watch=false --browsers=ChromeHeadless --code-coverage --reporters=coverage-istanbul
-  - ng e2e --protractor-config='e2e/ci.protractor.conf.js'  
-  - ng build --prod=false
 
-after_success:
-  - firebase deploy --token $FIREBASE_TOKEN
+   
+script:
+   - ./gradlew assembleDebug  --stacktrace
 
 
 notifications:
