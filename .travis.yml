@@ -41,6 +41,7 @@ cache:
 
 before_script:
   - chmod +x  ./android/gradlew 
+  - export CHROME_BIN='/usr/bin/chromium-browser'
      
 script:
   - ng test --watch=false --browsers=ChromeHeadless 
