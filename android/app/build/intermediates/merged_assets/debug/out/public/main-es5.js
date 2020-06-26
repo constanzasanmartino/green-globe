@@ -910,6 +910,7 @@
             /* harmony import */ var _environments_environment__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../environments/environment */ "./src/environments/environment.ts");
             /* harmony import */ var angularfire2_firestore__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! angularfire2/firestore */ "./node_modules/angularfire2/firestore/index.js");
             /* harmony import */ var angularfire2_firestore__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/ __webpack_require__.n(angularfire2_firestore__WEBPACK_IMPORTED_MODULE_13__);
+            /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
             var AppModule = /** @class */ (function () {
                 function AppModule() {
                 }
@@ -928,6 +929,7 @@
                     providers: [
                         _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
                         _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
+                        _angular_common__WEBPACK_IMPORTED_MODULE_14__["DatePipe"],
                         { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
                     ],
                     bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
@@ -1087,6 +1089,9 @@
                 EventoCardComponent.prototype.ngOnInit = function () {
                     if (this.evento.foto) {
                         this.imagenEvento = this.evento.foto;
+                    }
+                    else {
+                        this.evento.foto = this.imagenEvento;
                     }
                 };
                 EventoCardComponent.prototype.goToEvent = function () {
