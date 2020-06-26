@@ -20,7 +20,5 @@ describe('ComentarioCardComponent', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+ 
 });

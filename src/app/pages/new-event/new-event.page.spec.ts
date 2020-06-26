@@ -23,7 +23,5 @@ describe('NewEventPage', () => {
     fixture.detectChanges();
   }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+ 
 });
