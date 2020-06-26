@@ -1,6 +1,5 @@
 language: android
 jdk: oraclejdk8
-node_js: "12.16.2"
 env:
   global:
   - ANDROID_API_LEVEL=28
@@ -25,9 +24,10 @@ before_install:
   - yes | sdkmanager "build-tools;28.0.3"
 
 install:
-  - npm install -g firebase-tools
+  - nvm install 12.16.2 
+  - npm install 
+  - npm install -D puppeteer
   - npm install -g  @angular/cli
-  - npm install -g @capacitor/core @capacitor/cli
 
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -41,11 +41,8 @@ cache:
 
 before_script:
   - chmod +x  ./android/gradlew 
-
      
 script:
-  - ng test --watch=false --browsers=ChromeHeadless 
-  - ng e2e --protractor-config='e2e/ci.protractor.conf.js' 
   - ng build --prod=false
   - npx cap copy
   - npx cap copy android
